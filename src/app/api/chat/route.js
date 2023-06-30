@@ -4,21 +4,18 @@ import { OpenAIStream, StreamingTextResponse } from "ai";
 export const runtime = "edge";
 
 const config = new Configuration({
-    apiKey: "OpenAI_API_Key"
+    apiKey: "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"
 })
 
 const openai = new OpenAIApi(config)
 
 export async function POST(request) {
+    const { messages } = await request.json()
+
     const response = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         stream: true,
-        messages: [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "Who won the world series in 2020?"},
-            {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
-            {"role": "user", "content": "Where was it played?"}
-        ],
+        messages,
         max_tokens: 500,
         temperature: 0.7,
         top_p: 1,
