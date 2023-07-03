@@ -15,9 +15,9 @@ export const FirstScreen = () => {
                             Examples
                         </h2>
                         <ul>
-                            <button>"Explain quantum computing in simple terms"</button>
-                            <button>"Got any creative ideas for a 10 year old’s birthday?"</button>
-                            <button>"How do I make an HTTP request in Javascript?"</button>
+                            <button>&quot;Explain quantum computing in simple terms&quot;</button>
+                            <button>&quot;Got any creative ideas for a 10 year old&rsquo;s birthday?&quot;</button>
+                            <button>&quot;How do I make an HTTP request in Javascript?&quot;</button>
                         </ul>
                     </div>
                     <div className="column">
