@@ -1,6 +1,3 @@
-"use client"
-
-import React from 'react';
 import './firstScreen.css'
 import { BsSun } from 'react-icons/bs';
 import { SlEnergy } from 'react-icons/sl';
