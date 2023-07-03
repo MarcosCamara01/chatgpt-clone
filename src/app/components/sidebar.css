@@ -40,24 +40,6 @@
     max-height: 1.25rem;
 }
 
-.sidebar_top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.sidebar_top button {
-    background-color: transparent;
-    cursor: pointer;
-    padding: 13px;
-}
-
-.sidebar_top button svg {
-    font-size: 16px;
-    color: #fff;
-}
-
 .top-component {
     padding: 12px;
     display: flex;
@@ -73,12 +55,6 @@
     justify-content: space-between;
     border-radius: .375rem;
     border: 1px solid transparent;
-}
-
-.left-bottom {
-    display: flex;
-    align-items: center;
-    gap: 12px;
 }
 
 .sidebar-link {
