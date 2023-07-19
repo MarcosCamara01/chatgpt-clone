@@ -6,8 +6,8 @@ connectToDatabase()
 
 export async function GET() {
     try {
-        const posts = await Chat.find()
-        return NextResponse.json(posts.reverse())
+        const chat = await Chat.find()
+        return NextResponse.json(chat.reverse())
     } catch {
         return NextResponse.json('error', {
             status: 500
@@ -18,8 +18,8 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const body: IChat = await req.json()
-        const newPost = new Chat(body)
-        const saved = await newPost.save()
+        const newChat = new Chat(body)
+        const saved = await newChat.save()
         return NextResponse.json(saved)
     } catch {
         return NextResponse.json('error', {
@@ -32,9 +32,9 @@ export async function DELETE(req: Request) {
     const query = new URL(req.url).searchParams
     const id = query.get('id')
     try {
-        const deletedPost = await Chat.findByIdAndDelete(id)
+        const deletedChat = await Chat.findByIdAndDelete(id)
 
-        return NextResponse.json(deletedPost)
+        return NextResponse.json(deletedChat)
     } catch {
         return NextResponse.json(
             {

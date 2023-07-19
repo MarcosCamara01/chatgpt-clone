@@ -1,6 +1,6 @@
 import { connect, connection } from 'mongoose'
 const {
-  MONGO_URI = 'yourMongoDBKey'
+  MONGO_URI = process.env.MONGODB_URI
 } = process.env
 
 const options: any = {
