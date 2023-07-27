@@ -3,7 +3,7 @@ import { BsSun } from 'react-icons/bs';
 import { SlEnergy } from 'react-icons/sl';
 import { PiWarningBold } from 'react-icons/pi';
 
-export const FirstScreen = () => {
+export const FirstScreen = ({ onButtonClick }) => {
     return (
         <div className='first-screen'>
             <div className='content'>
@@ -15,9 +15,21 @@ export const FirstScreen = () => {
                             Examples
                         </h2>
                         <ul>
-                            <button>&quot;Explain quantum computing in simple terms&quot;</button>
-                            <button>&quot;Got any creative ideas for a 10 year old&rsquo;s birthday?&quot;</button>
-                            <button>&quot;How do I make an HTTP request in Javascript?&quot;</button>
+                            <button
+                                onClick={() => onButtonClick('Explain quantum computing in simple terms')}
+                            >
+                                &quot;Explain quantum computing in simple terms&quot;
+                            </button>
+                            <button 
+                                onClick={() => onButtonClick("Got any creative ideas for a 10 year old's birthday?")}
+                            >
+                                &quot;Got any creative ideas for a 10 year old&rsquo;s birthday?&quot;
+                            </button>
+                            <button
+                                onClick={() => onButtonClick('How do I make an HTTP request in Javascript?')}
+                            >
+                                &quot;How do I make an HTTP request in Javascript?&quot;
+                            </button>
                         </ul>
                     </div>
                     <div className="column">

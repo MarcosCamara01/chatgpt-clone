@@ -12,6 +12,7 @@ export const ChatGPT = ({ isSidebarOpen }) => {
     const textareaRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
+    const [localInput, setLocalInput] = useState('');
     const { messages, input, handleInputChange, handleSubmit } = useChat();
 
     const handleFormSubmit = useCallback(
@@ -21,6 +22,10 @@ export const ChatGPT = ({ isSidebarOpen }) => {
         },
         [handleSubmit]
     );
+
+    const handleInputButtonClick = useCallback((content) => {
+        setLocalInput(content);
+    }, []);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -42,6 +47,7 @@ export const ChatGPT = ({ isSidebarOpen }) => {
         const textarea = textareaRef.current;
         textarea.style.height = '24px';
         textarea.style.height = `${textarea.scrollHeight}px`;
+        setLocalInput(input);
     }, [input]);
 
     useEffect(() => {
@@ -78,7 +84,7 @@ export const ChatGPT = ({ isSidebarOpen }) => {
                     })}
                 </>
             ) : (
-                <FirstScreen />
+                <FirstScreen onButtonClick={handleInputButtonClick} />
             )}
 
             <div className='bx-separator bx-dark' ref={messagesContainerRef}></div>
@@ -92,7 +98,7 @@ export const ChatGPT = ({ isSidebarOpen }) => {
                                 placeholder='Send a message'
                                 name='message'
                                 id='message'
-                                value={input}
+                                value={localInput}
                                 onChange={handleInputChange}
                             ></textarea>
                             <button
@@ -109,5 +115,5 @@ export const ChatGPT = ({ isSidebarOpen }) => {
                 </form>
             </div>
         </div>
-    );
-};
+    )
+}
