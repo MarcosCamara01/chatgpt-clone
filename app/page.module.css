@@ -3,4 +3,13 @@
     display: grid;
     grid-template-columns: 260px auto;
     background-color: rgba(52, 53, 65, 1);
+    transition: all var(--transition) ease;
+}
+
+.sidebarclose {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 0 auto;
+    background-color: rgba(52, 53, 65, 1);
+    transition: all var(--transition) ease;
 }

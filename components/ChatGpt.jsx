@@ -8,7 +8,7 @@ import { useChat } from "ai/react";
 import { FirstScreen } from './FirstScreen';
 import { AiOutlineUser } from 'react-icons/ai';
 
-export const ChatGPT = () => {
+export const ChatGPT = ({ isSidebarOpen }) => {
     const textareaRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
@@ -83,7 +83,7 @@ export const ChatGPT = () => {
 
             <div className='bx-separator bx-dark' ref={messagesContainerRef}></div>
 
-            <div className='principal-input'>
+            <div className={isSidebarOpen ? "principal-input" : "principal-input big-input"}>
                 <form onSubmit={handleFormSubmit}>
                     <div className='form-firstbx'>
                         <div className='form-secondbx'>

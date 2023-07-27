@@ -25,4 +25,5 @@ a {
   --text-secondary: #6e6e80;
   --text-disabled: #acacbe;
   --text-error: var(--color-error);
+  --transition: 0.2s;
 }

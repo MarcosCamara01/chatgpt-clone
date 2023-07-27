@@ -7,6 +7,11 @@
     padding: 0.5rem 0 0 0.5rem;
     display: flex;
     justify-content: center;
+    transition: all var(--transition) ease;
+}
+
+.big-input {
+    width: 100%;
 }
 
 .principal-input form {
