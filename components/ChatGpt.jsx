@@ -12,8 +12,7 @@ export const ChatGPT = ({ isSidebarOpen }) => {
     const textareaRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
-    const [localInput, setLocalInput] = useState('');
-    const { messages, input, handleInputChange, handleSubmit } = useChat();
+    const { messages, input, setInput, handleInputChange, handleSubmit } = useChat();
 
     const handleFormSubmit = useCallback(
         (event) => {
@@ -24,7 +23,7 @@ export const ChatGPT = ({ isSidebarOpen }) => {
     );
 
     const handleInputButtonClick = useCallback((content) => {
-        setLocalInput(content);
+        setInput(content);
     }, []);
 
     useEffect(() => {
@@ -47,7 +46,6 @@ export const ChatGPT = ({ isSidebarOpen }) => {
         const textarea = textareaRef.current;
         textarea.style.height = '24px';
         textarea.style.height = `${textarea.scrollHeight}px`;
-        setLocalInput(input);
     }, [input]);
 
     useEffect(() => {
@@ -98,7 +96,7 @@ export const ChatGPT = ({ isSidebarOpen }) => {
                                 placeholder='Send a message'
                                 name='message'
                                 id='message'
-                                value={localInput}
+                                value={input}
                                 onChange={handleInputChange}
                             ></textarea>
                             <button
