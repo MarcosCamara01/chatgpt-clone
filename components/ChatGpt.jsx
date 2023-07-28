@@ -67,7 +67,7 @@ const ChatGPT = ({ isSidebarOpen }) => {
                 <>
                     {messages.map((message) => {
                         const isChatGPT = message.role !== 'user';
-                        const messageContent = message.content.split('\n');
+                        const messageContent = message.content.split('\n\n');
 
                         return (
                             <div key={message.id} className={`bx-group ${isChatGPT ? "bx-clear" : "bx-dark"}`}>
@@ -77,7 +77,7 @@ const ChatGPT = ({ isSidebarOpen }) => {
                                         :
                                         <div className='bx-svg'><AiOutlineUser /></div>
                                     }
-                                    <div className='messages-bx'>
+                                    <div className={`messages-bx ${isChatGPT && messageContent.length > 1 ? "message-gpt" : ""}`}>
                                         {messageContent.map((paragraph, index) => (
                                             <p key={index}>{paragraph}</p>
                                         ))}

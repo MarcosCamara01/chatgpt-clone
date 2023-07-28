@@ -18,7 +18,7 @@
 
 .nav-container nav {
     width: 100%;
-    height: calc(100vh - 157px);
+    height: calc(100vh - 125px);
 }
 
 .nav-container nav h3 {
@@ -101,7 +101,7 @@
 }
 
 .sidebar_bottom {
-    padding-top: 0.5rem;
+    padding: 0.5rem 0;
     border-top: 1px solid hsla(0, 0%, 100%, .2);
 }
 

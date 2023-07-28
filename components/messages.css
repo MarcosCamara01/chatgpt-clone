@@ -58,8 +58,11 @@
 }
 
 .messages-bx p {
-    font-size: 1rem;
+    font-size: 15px;
     line-height: 1.7rem;
+}
+
+.messages-bx.message-gpt p {
     margin-bottom: 20px;
 }
 

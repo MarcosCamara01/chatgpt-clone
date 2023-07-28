@@ -3,7 +3,6 @@
 import React from 'react';
 import './sidebar.css'
 import { IoMdAdd } from 'react-icons/io';
-import { MdOutlineWorkspacePremium } from 'react-icons/md';
 import { FiSettings, FiSidebar } from 'react-icons/fi';
 
 export const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
@@ -34,12 +33,6 @@ export const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
                     </ul>
                 </nav>
                 <div className="sidebar_bottom">
-                    <a className='sidebar-link bottom-component button'>
-                        <div className='left-bottom'>
-                            <span>Upgrade Plan</span>
-                        </div>
-                        <MdOutlineWorkspacePremium />
-                    </a>
                     <a href='https://portfoliomarcos.com/' target='_blank' className='sidebar-link bottom-component button'>
                         <div className="left-bottom">
                             <span>My portfolio</span>
