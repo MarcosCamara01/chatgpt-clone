@@ -57,9 +57,10 @@
     color: #fff;
 }
 
-.bx-text p {
+.messages-bx p {
     font-size: 1rem;
     line-height: 1.7rem;
+    margin-bottom: 20px;
 }
 
 .bx-separator {

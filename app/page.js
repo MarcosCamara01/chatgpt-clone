@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import { ChatGPT } from '../components/ChatGpt'
+import ChatGPT from '../components/ChatGpt'
 import { Sidebar } from '../components/Sidebar'
 import styles from './page.module.css'
 
