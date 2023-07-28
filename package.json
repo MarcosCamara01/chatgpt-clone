@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "5.0.0",
+    "@vercel/analytics": "^1.0.1",
     "ai": "^2.1.8",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
@@ -16,10 +18,11 @@
     "next": "13.4.7",
     "next-api-validation": "^1.0.5",
     "openai-edge": "^1.1.0",
+    "prisma": "^5.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
-    "typewriter-effect": "^2.20.1"
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97",
