@@ -2,8 +2,10 @@ import mongoose, { Document, model, Model, Schema } from 'mongoose'
 
 export interface IChat extends Document {
   title: string
-  date: string
+  date: any
   content: string
+  id: string
+  role: string
 }
 
 const ChatSchema: Schema = new Schema({
@@ -11,9 +13,15 @@ const ChatSchema: Schema = new Schema({
     type: String
   },
   date: {
-    type: String
+    type: Date
   },
   content: {
+    type: String
+  },
+  id: {
+    type: String
+  },
+  role: {
     type: String
   }
 })

@@ -2,11 +2,12 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    width: calc(100% - 260px);    
+    width: calc(100% - 260px);
     background-image: linear-gradient(180deg, rgba(53, 55, 64, 0), #353740 58.85%);
     padding: 0.5rem 0 0 0.5rem;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     transition: all var(--transition) ease;
 }
 
@@ -17,7 +18,6 @@
 .principal-input form {
     width: 90%;
     max-width: 48rem;
-    margin: 0 auto;
     display: flex;
     flex-direction: row;
     padding-bottom: 52px;
@@ -84,5 +84,29 @@
 }
 
 .principal-input form button svg {
+    font-size: 16px;
+}
+
+.save-btn {
+    width: 120px;
+    background-color: rgba(52, 53, 65, 1);
+    border: 1px solid rgba(86, 88, 105, 1);
+    color: rgba(217, 217, 227, 1);
+    border-radius: 0.25rem;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 14px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all var(--transition) ease;
+}
+
+.save-btn:hover {
+    background-color: rgba(64, 65, 79, 1);
+}
+
+.save-btn svg {
     font-size: 16px;
 }

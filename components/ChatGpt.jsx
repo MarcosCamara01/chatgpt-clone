@@ -7,6 +7,7 @@ import { BiSolidSend } from 'react-icons/bi';
 import { useChat } from "ai/react";
 import { FirstScreen } from './FirstScreen';
 import { AiOutlineUser } from 'react-icons/ai';
+import { LuSave } from 'react-icons/lu';
 import { GptIcon } from "../helpers/icons";
 
 const ChatGPT = ({ isSidebarOpen }) => {
@@ -94,6 +95,12 @@ const ChatGPT = ({ isSidebarOpen }) => {
             <div className='bx-separator bx-dark' ref={messagesContainerRef}></div>
 
             <div className={isSidebarOpen ? "principal-input" : "principal-input big-input"}>
+                {messages.length > 1 &&
+                    <button className='save-btn'>
+                        <LuSave />
+                        Save?
+                    </button>
+                }
                 <form onSubmit={handleFormSubmit}>
                     <div className='form-firstbx'>
                         <div className='form-secondbx'>
