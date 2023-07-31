@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextRequest ,NextResponse } from 'next/server'
 import { Chat, IChat } from '../../../src/models'
 import { connectToDatabase } from '../../../src/utils'
 
@@ -15,7 +15,7 @@ export async function GET() {
     }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
     try {
         const body: IChat = await req.json()
         const newChat = new Chat(body)
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     }
 }
 
-export async function DELETE(req: Request) {
+export async function DELETE(req: NextRequest) {
     const query = new URL(req.url).searchParams
     const id = query.get('id')
     try {

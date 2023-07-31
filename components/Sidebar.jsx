@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import './sidebar.css'
+import '../assets/css/sidebar.css'
 import { IoMdAdd } from 'react-icons/io';
 import { FiSettings, FiSidebar } from 'react-icons/fi';
 
