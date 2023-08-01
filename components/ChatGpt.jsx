@@ -6,11 +6,11 @@ import '../assets/css/messages.css';
 import { BiSolidSend } from 'react-icons/bi';
 import { useChat } from "ai/react";
 import { FirstScreen } from './FirstScreen';
-import { AiOutlineUser } from 'react-icons/ai';
 import { SaveButton } from './SaveButton';
+import { AiOutlineUser } from 'react-icons/ai';
 import { GptIcon } from "../helpers/icons";
 
-const ChatGPT = ({ isSidebarOpen }) => {
+const ChatGPT = ({ isSidebarOpen, isMobile }) => {
     const textareaRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
@@ -63,9 +63,9 @@ const ChatGPT = ({ isSidebarOpen }) => {
     }, [messages]);
 
     return (
-        <div className='chat-gpt'>
+        <div className={isSidebarOpen && !isMobile ? "chat-gpt" : "chat-gpt big"}>
             {messagesReady ? (
-                <>
+                <div className={isSidebarOpen && !isMobile ? "messages" : "messages big"}>
                     {messages.map((message) => {
                         const isChatGPT = message.role !== 'user';
                         const messageContent = message.content.split('\n\n');
@@ -78,7 +78,7 @@ const ChatGPT = ({ isSidebarOpen }) => {
                                         :
                                         <div className='bx-svg'><AiOutlineUser /></div>
                                     }
-                                    <div className={`messages-bx ${isChatGPT && messageContent.length > 1 ? "message-gpt" : ""}`}>
+                                    <div className={`messages-bx ${isChatGPT ? "message-gpt" : ""}`}>
                                         {messageContent.map((paragraph, index) => (
                                             <p key={index}>{paragraph}</p>
                                         ))}
@@ -87,14 +87,16 @@ const ChatGPT = ({ isSidebarOpen }) => {
                             </div>
                         );
                     })}
-                </>
+                </div>
             ) : (
-                <FirstScreen onButtonClick={handleInputButtonClick} />
+                <FirstScreen
+                    onButtonClick={handleInputButtonClick}
+                />
             )}
 
             <div className='bx-separator bx-dark' ref={messagesContainerRef}></div>
 
-            <div className={isSidebarOpen ? "principal-input" : "principal-input big-input"}>
+            <div className={isSidebarOpen && !isMobile ? "principal-input" : "principal-input big-input"}>
                 {messages.length > 1 &&
                     <SaveButton />
                 }

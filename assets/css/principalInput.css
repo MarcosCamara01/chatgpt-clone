@@ -1,5 +1,5 @@
 .principal-input {
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     width: calc(100% - 260px);

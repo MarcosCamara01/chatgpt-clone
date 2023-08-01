@@ -3,12 +3,13 @@
     flex-direction: column;
     font-size: .875rem;
     line-height: 1.25rem;
+    transition: all var(--transition) ease;
+    width: 100%;
 }
 
 .content {
-    padding: 0 1.5rem;
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     max-width: 48rem;
     display: flex;
     flex-direction: column;
@@ -84,4 +85,22 @@
 
 .column ul button:hover {
     background-color: rgba(32, 33, 35, 1);
+}
+
+@media (max-width: 600px) {
+    .content h1 {
+        margin: 75px 0 0;
+    }
+
+    .columns {
+        flex-direction: column;
+    }
+
+    .column h2 {
+        flex-direction: initial;
+    }
+
+    .column{
+        margin-top: 2rem;
+    }
 }

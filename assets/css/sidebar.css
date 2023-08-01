@@ -2,6 +2,7 @@
     height: 100vh;
     background-color: rgba(32, 33, 35, 1);
     transition: transform var(--transition) ease;
+    z-index: 10;
 }
 
 .nav-container.sidebar-open {
@@ -10,8 +11,12 @@
     transform: translateX(0);
 }
 
+.nav-container.sidebar-open.mobile {
+    width: 100%;
+}
+
 .nav-container.sidebar-close {
-    transform: translateX(-200%);
+    transform: translateX(-100%);
     padding: 0;
     overflow: hidden;
 }
@@ -118,6 +123,7 @@
     justify-content: center;
     transition: all var(--transition) ease;
     cursor: pointer;
+    z-index: 50;
 }
 
 .sidebarclose-btn:hover {

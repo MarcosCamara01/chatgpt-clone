@@ -5,7 +5,7 @@ import '../assets/css/sidebar.css'
 import { IoMdAdd } from 'react-icons/io';
 import { FiSettings, FiSidebar } from 'react-icons/fi';
 
-export const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
+export const Sidebar = ({ isSidebarOpen, setSidebarOpen, isMobile }) => {
     const handleClick = () => {
         window.location.reload();
     };
@@ -16,7 +16,7 @@ export const Sidebar = ({ isSidebarOpen, setSidebarOpen }) => {
 
     return (
         <>
-            <div className={`nav-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-close'}`}>
+            <div className={`nav-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && isSidebarOpen ? "mobile" : ""}`}>
                 <div className="sidebar_top">
                     <a onClick={handleClick} className='sidebar-link top-component button'>
                         <IoMdAdd />

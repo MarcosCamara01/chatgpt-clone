@@ -1,7 +1,15 @@
 .chat-gpt {
-    width: 100%;
     height: 100vh;
     overflow-y: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: calc(100% - 260px);
+    transition: all var(--transition) ease;
+}
+
+.chat-gpt.big {
+    width: 100%;
 }
 
 .bx-group {
@@ -62,8 +70,8 @@
     line-height: 1.7rem;
 }
 
-.messages-bx.message-gpt p {
-    margin-bottom: 20px;
+.messages-bx.message-gpt p:not(:first-of-type) {
+    margin-top: 20px;
 }
 
 .bx-separator {
