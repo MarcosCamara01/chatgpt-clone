@@ -55,7 +55,7 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
             setMessagesReady(true);
         }
 
-        if (messagesContainerRef.current) {
+        if (messagesContainerRef.current && messagesReady) {
             messagesContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
 
@@ -65,7 +65,7 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
     return (
         <div className={isSidebarOpen && !isMobile ? "chat-gpt" : "chat-gpt big"}>
             {messagesReady ? (
-                <div className={isSidebarOpen && !isMobile ? "messages" : "messages big"}>
+                <>
                     {messages.map((message) => {
                         const isChatGPT = message.role !== 'user';
                         const messageContent = message.content.split('\n\n');
@@ -87,7 +87,7 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
                             </div>
                         );
                     })}
-                </div>
+                </>
             ) : (
                 <FirstScreen
                     onButtonClick={handleInputButtonClick}

@@ -1,13 +1,13 @@
 .nav-container {
-    height: 100vh;
+    height: 100%;
     background-color: rgba(32, 33, 35, 1);
+    padding: 0.5rem;
     transition: transform var(--transition) ease;
     z-index: 10;
 }
 
 .nav-container.sidebar-open {
     width: 260px;
-    padding: 0.5rem;
     transform: translateX(0);
 }
 
@@ -17,7 +17,6 @@
 
 .nav-container.sidebar-close {
     transform: translateX(-100%);
-    padding: 0;
     overflow: hidden;
 }
 
