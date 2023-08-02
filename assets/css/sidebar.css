@@ -111,7 +111,7 @@
 }
 
 .sidebarclose-btn {
-    position: absolute;
+    position: fixed;
     top: 10px;
     left: 10px;
     background-color: rgba(52, 53, 65, 1);

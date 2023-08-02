@@ -62,14 +62,17 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
 
     return (
         <div className={isSidebarOpen && !isMobile ? "chat-gpt" : "chat-gpt big"}>
-            <Header
-                isSidebarOpen={isSidebarOpen}
-                isMobile={isMobile}
-            />
+
             {messagesReady ? (
-                <Messages
-                    messages={messages}
-                />
+                <>
+                    <Header
+                        isSidebarOpen={isSidebarOpen}
+                        isMobile={isMobile}
+                    />
+                    <Messages
+                        messages={messages}
+                    />
+                </>
             ) : (
                 <FirstScreen
                     onButtonClick={handleInputButtonClick}
@@ -82,7 +85,7 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
                 {messages.length > 1 &&
                     <SaveButton />
                 }
-                <PrincipalImput 
+                <PrincipalImput
                     handleFormSubmit={handleFormSubmit}
                     textareaRef={textareaRef}
                     input={input}
