@@ -1,0 +1,27 @@
+header {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 24px 0px;
+    background-color: rgba(52, 53, 65, 1);
+    border-bottom: 1px solid rgba(32,33,35,.5);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: all var(--transition) ease;
+}
+
+header.small {
+    width: calc(100% - 260px);
+}
+
+header.big {
+    width: 100%;
+}
+
+header span {
+    color: #D9D9E3;
+    font-size: 14px;
+}

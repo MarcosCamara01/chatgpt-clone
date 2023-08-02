@@ -1,6 +1,5 @@
 .chat-gpt {
     height: 100vh;
-    overflow-y: auto;
     position: absolute;
     right: 0;
     top: 0;
@@ -14,6 +13,10 @@
 
 .bx-group {
     width: 100%;
+}
+
+.bx-group:first-of-type {
+    margin-top: 65px;
 }
 
 .bx-dark {

@@ -1,14 +1,12 @@
 "use client"
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import '../assets/css/principalInput.css';
-import '../assets/css/messages.css';
-import { BiSolidSend } from 'react-icons/bi';
 import { useChat } from "ai/react";
 import { FirstScreen } from './FirstScreen';
 import { SaveButton } from './SaveButton';
-import { AiOutlineUser } from 'react-icons/ai';
-import { GptIcon } from "../helpers/icons";
+import { Messages } from "./Messages";
+import { PrincipalImput } from "./PrincipalImput";
+import { Header } from './Header';
 
 const ChatGPT = ({ isSidebarOpen, isMobile }) => {
     const textareaRef = useRef(null);
@@ -64,30 +62,14 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
 
     return (
         <div className={isSidebarOpen && !isMobile ? "chat-gpt" : "chat-gpt big"}>
+            <Header
+                isSidebarOpen={isSidebarOpen}
+                isMobile={isMobile}
+            />
             {messagesReady ? (
-                <>
-                    {messages.map((message) => {
-                        const isChatGPT = message.role !== 'user';
-                        const messageContent = message.content.split('\n\n');
-
-                        return (
-                            <div key={message.id} className={`bx-group ${isChatGPT ? "bx-clear" : "bx-dark"}`}>
-                                <div className='bx-text'>
-                                    {isChatGPT ?
-                                        <div className='bx-svg'><GptIcon /></div>
-                                        :
-                                        <div className='bx-svg'><AiOutlineUser /></div>
-                                    }
-                                    <div className={`messages-bx ${isChatGPT ? "message-gpt" : ""}`}>
-                                        {messageContent.map((paragraph, index) => (
-                                            <p key={index}>{paragraph}</p>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </>
+                <Messages
+                    messages={messages}
+                />
             ) : (
                 <FirstScreen
                     onButtonClick={handleInputButtonClick}
@@ -100,29 +82,12 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
                 {messages.length > 1 &&
                     <SaveButton />
                 }
-                <form onSubmit={handleFormSubmit}>
-                    <div className='form-firstbx'>
-                        <div className='form-secondbx'>
-                            <textarea
-                                ref={textareaRef}
-                                placeholder='Send a message'
-                                name='message'
-                                id='message'
-                                value={input}
-                                onChange={handleInputChange}
-                            ></textarea>
-                            <button
-                                style={{
-                                    backgroundColor: input ? 'rgb(25, 195, 125)' : '',
-                                    opacity: input ? 1 : 0.4,
-                                    color: input ? '#fff' : '',
-                                }}
-                            >
-                                <BiSolidSend />
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                <PrincipalImput 
+                    handleFormSubmit={handleFormSubmit}
+                    textareaRef={textareaRef}
+                    input={input}
+                    handleInputChange={handleInputChange}
+                />
             </div>
         </div>
     )
