@@ -1,30 +1,45 @@
-import mongoose, { Document, model, Model, Schema } from 'mongoose'
+import mongoose, { Document, model, Model, Schema } from 'mongoose';
 
-export interface IChat extends Document {
-  title: string
-  date: any
-  content: string
+export interface IMessage {
+  content: string;
   id: string
   role: string
 }
 
-const ChatSchema: Schema = new Schema({
-  title: {
-    type: String
-  },
-  date: {
-    type: Date
-  },
+export interface IChat extends Document {
+  title: string;
+  date: Date;
+  messages: IMessage[];
+}
+
+const MessageSchema: Schema = new Schema({
   content: {
-    type: String
+    type: String,
+    required: true,
   },
   id: {
-    type: String
+    type: String,
+    required: true,
   },
   role: {
-    type: String
-  }
-})
+    type: String,
+    required: true,
+  },
+});
 
-export const Chat = (mongoose.models.Chat ||
-  model('Chat', ChatSchema)) as Model<IChat>
+const ChatSchema: Schema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+  },
+  messages: {
+    type: [MessageSchema],
+    required: true,
+  },
+});
+
+export const Chat = (mongoose.models.Chat || model<IChat>('Chat', ChatSchema)) as Model<IChat>;

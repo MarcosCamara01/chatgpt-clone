@@ -82,7 +82,9 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
 
             <div className={isSidebarOpen && !isMobile ? "principal-input" : "principal-input big-input"}>
                 {messages.length > 1 &&
-                    <SaveButton />
+                    <SaveButton
+                        messages={messages}
+                    />
                 }
                 <PrincipalImput
                     handleFormSubmit={handleFormSubmit}

@@ -1,4 +1,4 @@
-import { NextRequest ,NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { Chat, IChat } from '../../../src/models'
 import { connectToDatabase } from '../../../src/utils'
 
@@ -17,17 +17,17 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     try {
-        const body: IChat = await req.json()
-        const newChat = new Chat(body)
-        const saved = await newChat.save()
-        return NextResponse.json(saved)
-    } catch {
-        return NextResponse.json('error', {
-            status: 500
-        })
+      const dataToSave = await req.json();
+      const savedChat = await Chat.create(dataToSave);
+      return NextResponse.json(savedChat);
+    } catch (error) {
+      console.error('Failed to save messages.', error);
+      return NextResponse.json('error', {
+        status: 500,
+      });
     }
-}
-
+  }
+  
 export async function DELETE(req: NextRequest) {
     const query = new URL(req.url).searchParams
     const id = query.get('id')
