@@ -62,7 +62,6 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
 
     return (
         <div className={isSidebarOpen && !isMobile ? "chat-gpt" : "chat-gpt big"}>
-
             {messagesReady ? (
                 <>
                     <Header
