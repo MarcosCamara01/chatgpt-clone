@@ -24,17 +24,20 @@ export const SaveButton = ({ messages }) => {
                 const url = `/api/save?id=${chatId}`;
                 const method = 'PUT';
 
-                await fetchRequest(url, method, dataToSave);
+                const responseData = await fetchRequest(url, method, dataToSave);
 
-                console.log('Messages updated successfully!');
+                if (responseData) {
+                    console.log('Messages updated successfully!');
+                }
             } else {
                 const url = '/api/save';
                 const method = 'POST';
 
                 const responseData = await fetchRequest(url, method, dataToSave);
-
-                setChatId(responseData._id);
-                console.log('Messages saved successfully!');
+                if (responseData) {
+                    setChatId(responseData._id);
+                    console.log('Messages saved successfully!');
+                }
             }
         } catch (error) {
             console.error('Failed to save/update messages.', error);

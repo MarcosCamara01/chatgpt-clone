@@ -1,14 +1,23 @@
 export const fetchRequest = async (url, method, data) => {
     try {
-        const response = await fetch(url, {
+        const options = {
             method,
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
-        });
+        };
+
+        if (data) {
+            options.body = JSON.stringify(data);
+        }
+
+        const response = await fetch(url, options);
 
         if (response.ok) {
+            if (method === 'DELETE') {
+                return;
+            }
+            
             const responseData = await response.json();
             return responseData;
         } else {
