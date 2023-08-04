@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { LuSave } from 'react-icons/lu';
+import { fetchRequest } from '../helpers/fetchRequest';
 
 export const SaveButton = ({ messages }) => {
     const [chatId, setChatId] = useState(null);
@@ -20,35 +21,20 @@ export const SaveButton = ({ messages }) => {
             };
 
             if (chatId) {
-                const response = await fetch(`/api/save?id=${chatId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(dataToSave),
-                });
+                const url = `/api/save?id=${chatId}`;
+                const method = 'PUT';
 
-                if (response.ok) {
-                    console.log('Messages updated successfully!');
-                } else {
-                    console.error('Failed to update messages.');
-                }
+                await fetchRequest(url, method, dataToSave);
+
+                console.log('Messages updated successfully!');
             } else {
-                const response = await fetch('/api/save', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(dataToSave),
-                });
+                const url = '/api/save';
+                const method = 'POST';
 
-                if (response.ok) {
-                    const responseData = await response.json();
-                    setChatId(responseData._id);
-                    console.log('Messages saved successfully!');
-                } else {
-                    console.error('Failed to save messages.');
-                }
+                const responseData = await fetchRequest(url, method, dataToSave);
+
+                setChatId(responseData._id);
+                console.log('Messages saved successfully!');
             }
         } catch (error) {
             console.error('Failed to save/update messages.', error);
