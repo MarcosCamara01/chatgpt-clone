@@ -8,7 +8,7 @@ import { Messages } from "./Messages";
 import { PrincipalImput } from "./PrincipalImput";
 import { Header } from './Header';
 
-const ChatGPT = ({ isSidebarOpen, isMobile }) => {
+const ChatGPT = ({ isSidebarOpen, isMobile, handleSaveButtonClick }) => {
     const textareaRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
@@ -84,6 +84,7 @@ const ChatGPT = ({ isSidebarOpen, isMobile }) => {
                 {messages.length > 1 &&
                     <SaveButton
                         messages={messages}
+                        handleSaveButtonClick={handleSaveButtonClick}
                     />
                 }
                 <PrincipalImput

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { LuSave } from 'react-icons/lu';
 import { fetchRequest } from '../helpers/fetchRequest';
 
-export const SaveButton = ({ messages }) => {
+export const SaveButton = ({ messages, handleSaveButtonClick }) => {
     const [chatId, setChatId] = useState(null);
 
     const handleSave = async () => {
@@ -36,6 +36,7 @@ export const SaveButton = ({ messages }) => {
                 const responseData = await fetchRequest(url, method, dataToSave);
                 if (responseData) {
                     setChatId(responseData._id);
+                    await handleSaveButtonClick()
                     console.log('Messages saved successfully!');
                 }
             }
