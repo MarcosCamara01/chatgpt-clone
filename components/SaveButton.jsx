@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import { LuSave } from 'react-icons/lu';
 import { fetchRequest } from '../helpers/fetchRequest';
+import { useChatContext } from '../helpers/ChatContext';
 
-export const SaveButton = ({ messages, handleSaveButtonClick }) => {
+export const SaveButton = ({ messages }) => {
     const [chatId, setChatId] = useState(null);
+    const { setChats } = useChatContext();
 
     const handleSave = async () => {
         try {
@@ -35,8 +37,9 @@ export const SaveButton = ({ messages, handleSaveButtonClick }) => {
 
                 const responseData = await fetchRequest(url, method, dataToSave);
                 if (responseData) {
+                    const updatedChat = { ...dataToSave, _id: responseData._id };
                     setChatId(responseData._id);
-                    await handleSaveButtonClick()
+                    setChats((prevChats) => [updatedChat, ...prevChats]);
                     console.log('Messages saved successfully!');
                 }
             }

@@ -5,8 +5,25 @@ import '../assets/css/sidebar.css'
 import { IoMdAdd } from 'react-icons/io';
 import { FiSettings, FiSidebar } from 'react-icons/fi';
 import { LuMessageSquare } from 'react-icons/lu';
+import { useChatContext } from '../helpers/ChatContext';
 
-export const Sidebar = ({ isSidebarOpen, setSidebarOpen, isMobile, chats }) => {
+export const Sidebar = ({ isSidebarOpen, setSidebarOpen, isMobile }) => {
+    const { chats, setChats } = useChatContext();
+
+    useEffect(() => {
+        fetchChats();
+    }, []);
+
+    async function fetchChats() {
+        try {
+            const response = await fetch('/api/save');
+            const data = await response.json();
+            setChats(data);
+        } catch (error) {
+            console.error('Failed to fetch chats.', error);
+        }
+    }
+
     let currentHeading = null;
 
     const handleClick = () => {
@@ -27,7 +44,7 @@ export const Sidebar = ({ isSidebarOpen, setSidebarOpen, isMobile, chats }) => {
             return 'Previous 30 Days';
         }
     };
-    
+
     return (
         <>
             <div className={`nav-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && isSidebarOpen ? "mobile" : ""}`}>

@@ -8,7 +8,7 @@ import { Messages } from "./Messages";
 import { PrincipalImput } from "./PrincipalImput";
 import { Header } from './Header';
 
-const ChatGPT = ({ isSidebarOpen, isMobile, handleSaveButtonClick }) => {
+const ChatGPT = ({ isSidebarOpen, isMobile }) => {
     const textareaRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
@@ -56,8 +56,6 @@ const ChatGPT = ({ isSidebarOpen, isMobile, handleSaveButtonClick }) => {
         if (messagesContainerRef.current && messagesReady) {
             messagesContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
-
-        console.log(messages)
     }, [messages]);
 
     return (
@@ -84,7 +82,6 @@ const ChatGPT = ({ isSidebarOpen, isMobile, handleSaveButtonClick }) => {
                 {messages.length > 1 &&
                     <SaveButton
                         messages={messages}
-                        handleSaveButtonClick={handleSaveButtonClick}
                     />
                 }
                 <PrincipalImput
