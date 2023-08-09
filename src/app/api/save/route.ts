@@ -6,18 +6,17 @@ dbConnect()
 
 export async function GET() {
     try {
-        const chat = await Chat.find()
-        return NextResponse.json(chat.reverse())
-    } catch {
-        return NextResponse.json('error', {
-            status: 500
-        })
+        const chat = await Chat.find();
+        return NextResponse.json(chat.reverse());
+    } catch (error) {
+        console.error('Failed to fetch chats.', error);
+        return NextResponse.json({ error: 'Failed to fetch chats.' }, { status: 500 });
     }
 }
 
 export async function PUT(req: NextRequest) {
-    const query = new URL(req.url).searchParams
-    const id = query.get('id')
+    const query = new URL(req.url).searchParams;
+    const id = query.get('id');
 
     try {
         const dataToUpdate = await req.json();
@@ -26,11 +25,10 @@ export async function PUT(req: NextRequest) {
         return NextResponse.json(updatedChat);
     } catch (error) {
         console.error('Failed to update messages.', error);
-        return NextResponse.json('error', {
-            status: 500,
-        });
+        return NextResponse.json({ error: 'Failed to update messages.' }, { status: 500 });
     }
 }
+
 
 export async function POST(req: NextRequest) {
     try {
@@ -39,26 +37,18 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ _id: savedChat._id });
     } catch (error) {
         console.error('Failed to save messages.', error);
-        return NextResponse.json('error', {
-            status: 500,
-        });
+        return NextResponse.json({ error: 'Failed to save messages.' }, { status: 500 });
     }
 }
-export async function DELETE(req: NextRequest) {
-    const query = new URL(req.url).searchParams
-    const id = query.get('id')
-    try {
-        const deletedChat = await Chat.findByIdAndDelete(id)
 
-        return NextResponse.json(deletedChat)
-    } catch {
-        return NextResponse.json(
-            {
-                error: 'Failed to remove post'
-            },
-            {
-                status: 500
-            }
-        )
+export async function DELETE(req: NextRequest) {
+    const query = new URL(req.url).searchParams;
+    const id = query.get('id');
+    try {
+        const deletedChat = await Chat.findByIdAndDelete(id);
+        return NextResponse.json(deletedChat);
+    } catch (error) {
+        console.error('Failed to remove post.', error);
+        return NextResponse.json({ error: 'Failed to remove post.' }, { status: 500 });
     }
 }
