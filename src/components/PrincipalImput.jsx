@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiSolidSend } from 'react-icons/bi';
-import '../assets/css/principalInput.css';
+import '../styles/css/principalInput.css';
 
 export const PrincipalImput = ({ handleFormSubmit, textareaRef, input, handleInputChange }) => {
     return (

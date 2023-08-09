@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef } from 'react';
-import '../assets/css/header.css';
+import '../styles/css/header.css';
 
 export const Header = ({ isSidebarOpen, isMobile }) => {
   const header = useRef(null);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { GptIcon } from "../helpers/icons";
-import '../assets/css/messages.css';
+import '../styles/css/messages.css';
 
 export const Messages = ({ messages }) => {
     return (

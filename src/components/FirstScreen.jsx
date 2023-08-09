@@ -1,4 +1,4 @@
-import '../assets/css/firstScreen.css'
+import '../styles/css/firstScreen.css'
 import { BsSun } from 'react-icons/bs';
 import { SlEnergy } from 'react-icons/sl';
 import { PiWarningBold } from 'react-icons/pi';

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Chat, IChat } from '../../../src/models'
-import { connectToDatabase } from '../../../src/utils'
+import { Chat, IChat } from '../../../models'
+import { dbConnect } from '../../../utils/mongoose'
 
-connectToDatabase()
+dbConnect()
 
 export async function GET() {
     try {
