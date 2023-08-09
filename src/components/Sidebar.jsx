@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect } from 'react';
 import '../styles/css/sidebar.css'
 import { IoMdAdd } from 'react-icons/io';
