@@ -25,7 +25,6 @@
     "react-icons": "^4.10.1"
   },
   "devDependencies": {
-    "@types/mongoose": "^5.11.97",
     "@types/node": "^20.1.0",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
