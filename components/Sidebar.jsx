@@ -1,6 +1,4 @@
-"use client"
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import '../assets/css/sidebar.css'
 import { IoMdAdd } from 'react-icons/io';
 import { FiSettings, FiSidebar } from 'react-icons/fi';

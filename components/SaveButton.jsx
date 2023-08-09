@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useState } from 'react';
 import { LuSave } from 'react-icons/lu';
 import { fetchRequest } from '../helpers/fetchRequest';
