@@ -1,6 +1,12 @@
+"use client"
+
 import './globals.css'
-import { Inter } from 'next/font/google'
+import React from 'react';
+import { ChatProvider } from '../helpers/ChatContext';
+import { Sidebar } from '../components/Sidebar';
+import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import { SidebarProvider } from '../helpers/SidebarContext';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,7 +19,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <main>
+          <ChatProvider>
+            <SidebarProvider> 
+              <Sidebar />
+              {children}
+            </SidebarProvider>
+          </ChatProvider>
+        </main>
         <Analytics />
       </body>
     </html>

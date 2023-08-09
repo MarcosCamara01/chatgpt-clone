@@ -4,9 +4,11 @@ import { IoMdAdd } from 'react-icons/io';
 import { FiSettings, FiSidebar } from 'react-icons/fi';
 import { LuMessageSquare } from 'react-icons/lu';
 import { useChatContext } from '../helpers/ChatContext';
+import { useSidebar } from '../helpers/SidebarContext';
 
-export const Sidebar = ({ isSidebarOpen, setSidebarOpen, isMobile }) => {
+export const Sidebar = () => {
     const { chats, setChats } = useChatContext();
+    const { isSidebarOpen, setSidebarOpen, isMobile } = useSidebar();
 
     useEffect(() => {
         fetchChats();

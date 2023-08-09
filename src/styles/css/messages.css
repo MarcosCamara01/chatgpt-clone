@@ -1,16 +1,3 @@
-.chat-gpt {
-    height: 100vh;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: calc(100% - 260px);
-    transition: all var(--transition) ease;
-}
-
-.chat-gpt.big {
-    width: 100%;
-}
-
 .bx-group {
     width: 100%;
 }

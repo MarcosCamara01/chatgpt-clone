@@ -7,12 +7,15 @@ import { SaveButton } from './SaveButton';
 import { Messages } from "./Messages";
 import { PrincipalImput } from "./PrincipalImput";
 import { Header } from './Header';
+import '../styles/css/chatgpt.css';
+import { useSidebar } from '../helpers/SidebarContext';
 
-const ChatGPT = ({ isSidebarOpen, isMobile }) => {
+const ChatGPT = () => {
     const textareaRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
     const { messages, input, setInput, handleInputChange, handleSubmit } = useChat();
+    const { isSidebarOpen, isMobile } = useSidebar();
 
     const handleFormSubmit = useCallback(
         (event) => {
