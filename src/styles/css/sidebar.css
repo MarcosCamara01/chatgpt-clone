@@ -167,3 +167,9 @@
     font-size: 16px;
     color: #fff;
 }
+
+@media (max-width: 600px) {
+    .nav-container nav {
+        max-width: 600px;
+    }
+}

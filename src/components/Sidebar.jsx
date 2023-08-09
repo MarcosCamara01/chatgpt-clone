@@ -20,6 +20,7 @@ export const Sidebar = () => {
         try {
             const response = await fetch('/api/save');
             const data = await response.json();
+            console.log('Fetched chats:', data);
             setChats(data);
         } catch (error) {
             console.error('Failed to fetch chats.', error);
@@ -60,25 +61,27 @@ export const Sidebar = () => {
                     </button>
                 </div>
                 <nav>
-                    {chats.map((chat) => {
-                        const heading = getHeading(chat.date);
+                    <ul>
+                        {chats.map((chat) => {
+                            const heading = getHeading(chat.date);
 
-                        const showHeading = heading !== currentHeading;
-                        if (showHeading) {
-                            currentHeading = heading;
-                        }
+                            const showHeading = heading !== currentHeading;
+                            if (showHeading) {
+                                currentHeading = heading;
+                            }
 
-                        if (chat.title) {
-                            return (
-                                <React.Fragment key={chat._id}>
-                                    {showHeading && <h3>{heading}</h3>}
-                                    <ul>
+                            if (chat.title) {
+                                return (
+
+                                    <React.Fragment key={chat._id}>
+                                        {showHeading && <h3>{heading}</h3>}
                                         <li><a href="#"><LuMessageSquare /><div>{chat.title} <div className='link-effect'></div> </div></a></li>
-                                    </ul>
-                                </React.Fragment>
-                            );
-                        }
-                    })}
+                                    </React.Fragment>
+
+                                );
+                            }
+                        })}
+                    </ul>
                 </nav>
                 <div className="sidebar_bottom">
                     <a href='https://portfoliomarcos.com/' target='_blank' className='sidebar-link bottom-component button'>
