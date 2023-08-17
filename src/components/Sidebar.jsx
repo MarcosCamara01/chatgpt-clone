@@ -18,7 +18,7 @@ export const Sidebar = () => {
 
     async function fetchChats() {
         try {
-            const response = await fetch('/api/save');
+            const response = await fetch('/api/chat');
             const data = await response.json();
             console.log('Fetched chats:', data);
             setChats(data);
@@ -72,12 +72,10 @@ export const Sidebar = () => {
 
                             if (chat.title) {
                                 return (
-
                                     <React.Fragment key={chat._id}>
                                         {showHeading && <h3>{heading}</h3>}
                                         <li><a href="#"><LuMessageSquare /><div>{chat.title} <div className='link-effect'></div> </div></a></li>
                                     </React.Fragment>
-
                                 );
                             }
                         })}
