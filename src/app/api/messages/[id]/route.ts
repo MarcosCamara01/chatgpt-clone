@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Chat } from '../../../../models'
 
-export async function GET({ params }) {
+export async function GET(params: { id: string }) {
     const id = params.id;
 
     try {
@@ -24,7 +24,7 @@ export async function GET({ params }) {
     }
 }
 
-export async function PUT(req: NextRequest, { params }) {
+export async function PUT(req: NextRequest, params: { id: string }) {
     const id = params.id;
 
     try {
@@ -38,7 +38,7 @@ export async function PUT(req: NextRequest, { params }) {
     }
 }
 
-export async function DELETE({ params }) {
+export async function DELETE(params: { id: string }) {
     const id = params.id;
 
     try {
