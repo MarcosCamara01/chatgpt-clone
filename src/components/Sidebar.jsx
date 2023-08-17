@@ -18,7 +18,7 @@ export const Sidebar = () => {
 
     async function fetchChats() {
         try {
-            const response = await fetch('/api/chat');
+            const response = await fetch('/api/messages');
             const data = await response.json();
             console.log('Fetched chats:', data);
             setChats(data);

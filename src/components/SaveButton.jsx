@@ -21,7 +21,7 @@ export const SaveButton = ({ messages }) => {
             };
 
             if (chatId) {
-                const url = `/api/chat?id=${chatId}`;
+                const url = `/api/messages?id=${chatId}`;
                 const method = 'PUT';
 
                 const responseData = await fetchRequest(url, method, dataToSave);
@@ -30,7 +30,7 @@ export const SaveButton = ({ messages }) => {
                     console.log('Messages updated successfully!');
                 }
             } else {
-                const url = '/api/chat';
+                const url = '/api/messages';
                 const method = 'POST';
 
                 const responseData = await fetchRequest(url, method, dataToSave);
