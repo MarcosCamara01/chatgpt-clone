@@ -7,6 +7,7 @@ import { FiSettings, FiSidebar } from 'react-icons/fi';
 import { LuMessageSquare } from 'react-icons/lu';
 import { useChatContext } from '../helpers/ChatContext';
 import { useSidebar } from '../helpers/SidebarContext';
+import Link from 'next/link';
 
 export const Sidebar = () => {
     const { chats, setChats } = useChatContext();
@@ -74,7 +75,15 @@ export const Sidebar = () => {
                                 return (
                                     <React.Fragment key={chat._id}>
                                         {showHeading && <h3>{heading}</h3>}
-                                        <li><a href="#"><LuMessageSquare /><div>{chat.title} <div className='link-effect'></div> </div></a></li>
+                                        <li>
+                                            <Link href={`/chats/${chat._id}`}>
+                                                <LuMessageSquare />
+                                                <div>
+                                                    {chat.title}
+                                                    <div className='link-effect'></div>
+                                                </div>
+                                            </Link>
+                                        </li>
                                     </React.Fragment>
                                 );
                             }

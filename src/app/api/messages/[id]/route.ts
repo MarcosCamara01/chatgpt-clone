@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Chat } from '../../../../models'
+import { dbConnect } from '../../../../utils/mongoose'
 
 export async function GET(req: NextRequest, params: { id: string }) {
-    const id = params.id;
+    dbConnect();
 
     try {
-        const chatFound = await Chat.findById(id);
+        const chatFound = await Chat.findById(params.id);
+
+        console.log(chatFound)
 
         if (!chatFound)
             return NextResponse.json(
@@ -25,11 +28,11 @@ export async function GET(req: NextRequest, params: { id: string }) {
 }
 
 export async function PUT(req: NextRequest, params: { id: string }) {
-    const id = params.id;
+    dbConnect();
 
     try {
         const dataToUpdate = await req.json();
-        const updatedChat = await Chat.findByIdAndUpdate(id, dataToUpdate, { new: true });
+        const updatedChat = await Chat.findByIdAndUpdate(params.id, dataToUpdate, { new: true });
 
         return NextResponse.json(updatedChat);
     } catch (error) {
@@ -39,10 +42,10 @@ export async function PUT(req: NextRequest, params: { id: string }) {
 }
 
 export async function DELETE(req: NextRequest, params: { id: string }) {
-    const id = params.id;
+    dbConnect();
 
     try {
-        const deletedChat = await Chat.findByIdAndDelete(id);
+        const deletedChat = await Chat.findByIdAndDelete(params.id);
 
         if (!deletedChat)
             return NextResponse.json(
