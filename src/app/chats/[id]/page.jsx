@@ -16,6 +16,7 @@ const Chat = () => {
         date: "",
         messages: [],
     });
+    const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
 
@@ -28,24 +29,28 @@ const Chat = () => {
             } else {
                 console.error('Chat not found.');
             }
+            setIsLoading(false);
         };
 
         fetchChat();
-    }, [params.id]);
+    }, [params.id, chats]);
 
     return (
         <div className={isSidebarOpen && !isMobile ? "chat-gpt" : "chat-gpt big"}>
-            <>
-                <Header
-                    isSidebarOpen={isSidebarOpen}
-                    isMobile={isMobile}
-                />
+            <Header
+                isSidebarOpen={isSidebarOpen}
+                isMobile={isMobile}
+            />
+
+            {isLoading ? (
+                <p>Loading messages...</p>
+            ) : (
                 <Messages
                     messages={chat.messages}
                 />
+            )}
 
-                <div className='bx-separator bx-dark'></div>
-            </>
+            <div className='bx-separator bx-dark'></div>
         </div>
     );
 };
