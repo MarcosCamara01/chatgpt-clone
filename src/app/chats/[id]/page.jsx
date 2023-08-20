@@ -6,6 +6,7 @@ import { Messages } from "../../../components/Messages";
 import { Header } from "../../../components/Header";
 import { useSidebar } from '../../../helpers/SidebarContext';
 import { useChatContext } from '../../../helpers/ChatContext';
+import { Loader } from "../../../helpers/Loader"
 import '../../../styles/css/chatgpt.css';
 
 const Chat = () => {
@@ -43,7 +44,7 @@ const Chat = () => {
             />
 
             {isLoading ? (
-                <p>Loading messages...</p>
+                <Loader/>
             ) : (
                 <Messages
                     messages={chat.messages}
