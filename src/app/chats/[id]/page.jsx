@@ -27,6 +27,7 @@ const Chat = () => {
             const foundChat = chatData.find(chat => chat._id === params.id);
             if (foundChat) {
                 setChat(foundChat);
+                document.title = foundChat.title;
             } else {
                 console.error('Chat not found.');
             }
