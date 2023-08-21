@@ -9,11 +9,15 @@ import { useChatContext } from '../helpers/ChatContext';
 import { useSidebar } from '../helpers/SidebarContext';
 import Link from 'next/link';
 import { Loader } from '../helpers/Loader';
+import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 export const Sidebar = () => {
     const { chats, setChats } = useChatContext();
     const { isSidebarOpen, setSidebarOpen, isMobile } = useSidebar();
     const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
+    const pathname = usePathname()
 
     useEffect(() => {
         fetchChats();
@@ -33,8 +37,13 @@ export const Sidebar = () => {
     let currentHeading = null;
 
     const handleClick = () => {
-        window.location.reload();
+        if (pathname === '/') {
+            window.location.reload();
+        } else {
+            router.push('/');
+        }
     };
+    
 
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
