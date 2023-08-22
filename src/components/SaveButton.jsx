@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LuSave } from 'react-icons/lu';
+import { BiCheck } from 'react-icons/bi';
 import { fetchRequest } from '../helpers/fetchRequest';
 import { useChatContext } from '../helpers/ChatContext';
 
 export const SaveButton = ({ messages }) => {
     const [chatId, setChatId] = useState(null);
+    const [showAnimation, setShowAnimation] = useState(false);
     const { setChats } = useChatContext();
+
+    useEffect(() => {
+        if (showAnimation) {
+            const animationTimeout = setTimeout(() => {
+                setShowAnimation(false);
+            }, 5000);
+
+            return () => clearTimeout(animationTimeout);
+        }
+    }, [showAnimation]);
 
     const handleSave = async () => {
         try {
@@ -28,6 +40,7 @@ export const SaveButton = ({ messages }) => {
 
                 if (responseData) {
                     console.log('Messages updated successfully!');
+                    setShowAnimation(true);
                 }
             } else {
                 const url = '/api/messages';
@@ -39,6 +52,7 @@ export const SaveButton = ({ messages }) => {
                     setChatId(responseData._id);
                     setChats((prevChats) => [updatedChat, ...prevChats]);
                     console.log('Messages saved successfully!');
+                    setShowAnimation(true);
                 }
             }
         } catch (error) {
@@ -47,9 +61,18 @@ export const SaveButton = ({ messages }) => {
     };
 
     return (
-        <button className='save-btn' onClick={handleSave}>
-            <LuSave />
-            Save
+        <button className={`save-btn ${showAnimation && "svg-big"}`} onClick={handleSave}>
+            {showAnimation ? (
+                <>
+                    <BiCheck />
+                    Saved
+                </>
+            ) : (
+                <>
+                    <LuSave />
+                    Save
+                </>
+            )}
         </button>
     );
 };

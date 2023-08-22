@@ -43,7 +43,7 @@ export const Sidebar = () => {
             router.push('/');
         }
     };
-    
+
 
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
@@ -54,6 +54,11 @@ export const Sidebar = () => {
             toggleSidebar()
         }
     }
+
+    const handleNewChatClick = () => {
+        handleClick();
+        toggleMobile();
+    };
 
     const getHeading = (chatDate) => {
         const timeDifference = new Date() - new Date(chatDate);
@@ -70,10 +75,10 @@ export const Sidebar = () => {
         <>
             <div className={`nav-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && isSidebarOpen ? "mobile" : ""}`}>
                 <div className="sidebar_top">
-                    <a onClick={handleClick} className='sidebar-link top-component button'>
+                    <button onClick={handleNewChatClick} className='sidebar-link top-component button'>
                         <IoMdAdd />
                         <span>New chat</span>
-                    </a>
+                    </button>
                     <button className='top-component button' onClick={toggleSidebar}>
                         <FiSidebar />
                     </button>

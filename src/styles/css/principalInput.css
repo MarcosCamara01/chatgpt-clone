@@ -89,6 +89,7 @@
 
 .save-btn {
     width: 100px;
+    height: 38px;
     background-color: rgba(52, 53, 65, 1);
     border: 1px solid rgba(86, 88, 105, 1);
     color: rgba(217, 217, 227, 1);
@@ -109,4 +110,8 @@
 
 .save-btn svg {
     font-size: 16px;
+}
+
+.svg-big svg {
+    font-size: 20px;
 }
