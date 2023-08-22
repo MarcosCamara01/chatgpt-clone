@@ -17,6 +17,10 @@ const ChatGPT = () => {
     const { messages, input, setInput, handleInputChange, handleSubmit } = useChat();
     const { isSidebarOpen, isMobile } = useSidebar();
 
+    useEffect(() => {
+        document.title = "ChatGPT Clone | By Marcos Cámara";
+    }, []);
+
     const handleFormSubmit = useCallback(
         (event) => {
             event.preventDefault();
@@ -24,10 +28,6 @@ const ChatGPT = () => {
         },
         [handleSubmit]
     );
-
-    const handleInputButtonClick = (content) => {
-        setInput(content);
-    };
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -60,6 +60,10 @@ const ChatGPT = () => {
             messagesContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
     }, [messages]);
+
+    const handleInputButtonClick = (content) => {
+        setInput(content);
+    };
 
     return (
         <div className={isSidebarOpen && !isMobile ? "chat-gpt" : "chat-gpt big"}>
