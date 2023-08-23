@@ -31,7 +31,6 @@ export const Messages = ({ messages }) => {
                                     if (part.startsWith('```')) {
                                         const codeBlockParts = part.split('\n');
                                         const language = codeBlockParts[0].replace(/```/, '').trim();
-                                        console.log(language)
                                         const codeContent = codeBlockParts.slice(1, -1).join('\n');
 
                                         return (

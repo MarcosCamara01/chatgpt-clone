@@ -68,3 +68,8 @@
 .bx-separator {
     height: 12rem;
 }
+
+pre {
+    width: 100%;
+    max-width: 48rem;
+}

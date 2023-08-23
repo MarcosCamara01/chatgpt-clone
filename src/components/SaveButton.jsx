@@ -7,17 +7,14 @@ import { useChatContext } from '../helpers/ChatContext';
 export const SaveButton = ({ messages }) => {
     const [chatId, setChatId] = useState(null);
     const [showAnimation, setShowAnimation] = useState(false);
-    const { setChats } = useChatContext();
+    const [storedMessagesLength, setStoredMessagesLength] = useState(0);
+    const { chats, setChats } = useChatContext();
 
     useEffect(() => {
-        if (showAnimation) {
-            const animationTimeout = setTimeout(() => {
-                setShowAnimation(false);
-            }, 5000);
-
-            return () => clearTimeout(animationTimeout);
+        if (showAnimation && messages.length > storedMessagesLength) {
+            setShowAnimation(false);
         }
-    }, [showAnimation]);
+    }, [messages, showAnimation, storedMessagesLength]);
 
     const handleSave = async () => {
         try {
@@ -41,6 +38,16 @@ export const SaveButton = ({ messages }) => {
                 if (responseData) {
                     console.log('Messages updated successfully!');
                     setShowAnimation(true);
+                    setStoredMessagesLength(messages.length);
+
+                    const updatedChats = chats.map((chat) => {
+                        if (chat._id === responseData._id) {
+                            return { ...chat, messages: dataToSave.messages };
+                        }
+                        return chat;
+                    });
+
+                    setChats(updatedChats);
                 }
             } else {
                 const url = '/api/messages';
@@ -53,6 +60,7 @@ export const SaveButton = ({ messages }) => {
                     setChats((prevChats) => [updatedChat, ...prevChats]);
                     console.log('Messages saved successfully!');
                     setShowAnimation(true);
+                    setStoredMessagesLength(messages.length);
                 }
             }
         } catch (error) {
