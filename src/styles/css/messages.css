@@ -75,7 +75,7 @@
 
 pre {
     width: 100%;
-    max-width: 48rem;
+    max-width: 714px;
 }
 
 @media screen and (max-width: 768px) {
