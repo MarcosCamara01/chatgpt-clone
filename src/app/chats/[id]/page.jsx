@@ -52,7 +52,7 @@ const Chat = () => {
                 />
             )}
 
-            <div className='bx-separator bx-dark'></div>
+            <div className='bx-separator-short bx-dark'></div>
         </div>
     );
 };

@@ -14,7 +14,7 @@
     color: #ECECF1;
 }
 
-.bx-dark .bx-svg{
+.bx-dark .bx-svg {
     background-color: #EC427B;
 }
 
@@ -23,10 +23,10 @@
 }
 
 .bx-clear p {
- color: #D1D5DB;
+    color: #D1D5DB;
 }
 
-.bx-clear .bx-svg{
+.bx-clear .bx-svg {
     background-color: rgb(25, 195, 125);
 }
 
@@ -69,7 +69,28 @@
     height: 12rem;
 }
 
+.bx-separator-short {
+    height: 100px;
+}
+
 pre {
     width: 100%;
     max-width: 48rem;
+}
+
+@media screen and (max-width: 768px) {
+    .messages-bx p {
+        font-size: 14px;
+        line-height: 1.5rem;
+    }
+
+    .messages-bx pre {
+        font-size: 12px;
+        padding: 8px;
+        max-width: 100%; 
+    }
+
+    .messages-bx {
+        overflow-x: auto;
+    }
 }
