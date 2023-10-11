@@ -5,8 +5,8 @@ import '../styles/css/sidebar.css'
 import { IoMdAdd } from 'react-icons/io';
 import { FiSettings, FiSidebar } from 'react-icons/fi';
 import { LuMessageSquare } from 'react-icons/lu';
-import { useChatContext } from '../helpers/ChatContext';
-import { useSidebar } from '../helpers/SidebarContext';
+import { useChatContext } from '../hooks/ChatContext';
+import { useSidebar } from '../hooks/SidebarContext';
 import Link from 'next/link';
 import { Loader } from '../helpers/Loader';
 import { useRouter } from 'next/navigation'

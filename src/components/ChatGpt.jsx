@@ -8,7 +8,7 @@ import { Messages } from "./Messages";
 import { PrincipalImput } from "./PrincipalImput";
 import { Header } from './Header';
 import '../styles/css/chatgpt.css';
-import { useSidebar } from '../helpers/SidebarContext';
+import { useSidebar } from '../hooks/SidebarContext';
 
 const ChatGPT = () => {
     const textareaRef = useRef(null);

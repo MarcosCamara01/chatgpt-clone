@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LuSave } from 'react-icons/lu';
 import { BiCheck } from 'react-icons/bi';
 import { fetchRequest } from '../helpers/fetchRequest';
-import { useChatContext } from '../helpers/ChatContext';
+import { useChatContext } from '../hooks/ChatContext';
 
 export const SaveButton = ({ messages }) => {
     const [chatId, setChatId] = useState(null);

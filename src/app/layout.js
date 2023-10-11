@@ -1,10 +1,10 @@
 import './globals.css'
 import React from 'react';
-import { ChatProvider } from '../helpers/ChatContext';
+import { ChatProvider } from '../hooks/ChatContext';
 import { Sidebar } from '../components/Sidebar';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import { SidebarProvider } from '../helpers/SidebarContext';
+import { SidebarProvider } from '../hooks/SidebarContext';
 
 const inter = Inter({ subsets: ['latin'] })
 
