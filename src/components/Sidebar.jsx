@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import '../styles/css/sidebar.css'
+import '../styles/css/sidebar.css';
 import { IoMdAdd } from 'react-icons/io';
 import { FiSettings, FiSidebar } from 'react-icons/fi';
 import { LuMessageSquare } from 'react-icons/lu';
@@ -9,15 +9,15 @@ import { useChatContext } from '../hooks/ChatContext';
 import { useSidebar } from '../hooks/SidebarContext';
 import Link from 'next/link';
 import { Loader } from '../helpers/Loader';
-import { useRouter } from 'next/navigation'
-import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 export const Sidebar = () => {
     const { chats, setChats } = useChatContext();
     const { isSidebarOpen, setSidebarOpen, isMobile } = useSidebar();
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
-    const pathname = usePathname()
+    const pathname = usePathname();
 
     useEffect(() => {
         fetchChats();
@@ -27,11 +27,12 @@ export const Sidebar = () => {
         try {
             const response = await fetch('/api/messages');
             const data = await response.json();
+            data.sort((a, b) => new Date(b.date) - new Date(a.date));
             setChats(data);
         } catch (error) {
             console.error('Failed to fetch chats.', error);
         }
-        setIsLoading(false)
+        setIsLoading(false);
     }
 
     let currentHeading = null;
@@ -44,16 +45,15 @@ export const Sidebar = () => {
         }
     };
 
-
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
     };
 
     const toggleMobile = () => {
         if (isMobile) {
-            toggleSidebar()
+            toggleSidebar();
         }
-    }
+    };
 
     const handleNewChatClick = () => {
         handleClick();
@@ -61,25 +61,32 @@ export const Sidebar = () => {
     };
 
     const getHeading = (chatDate) => {
-        const timeDifference = new Date() - new Date(chatDate);
+        const currentDate = new Date();
+        const chatDateObj = new Date(chatDate);
+        const timeDifference = currentDate - chatDateObj;
+
         if (timeDifference <= 24 * 60 * 60 * 1000) {
             return 'Today';
+        } else if (timeDifference <= 2 * 24 * 60 * 60 * 1000) {
+            return 'Yesterday';
         } else if (timeDifference <= 7 * 24 * 60 * 60 * 1000) {
             return 'Previous 7 Days';
         } else if (timeDifference <= 30 * 24 * 60 * 60 * 1000) {
             return 'Previous 30 Days';
+        } else {
+            return 'Older';
         }
     };
 
     return (
         <>
-            <div className={`nav-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && isSidebarOpen ? "mobile" : ""}`}>
+            <div className={`nav-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && isSidebarOpen ? 'mobile' : ''}`}>
                 <div className="sidebar_top">
-                    <button onClick={handleNewChatClick} className='sidebar-link top-component button'>
+                    <button onClick={handleNewChatClick} className="sidebar-link top-component button">
                         <IoMdAdd />
                         <span>New chat</span>
                     </button>
-                    <button className='top-component button' onClick={toggleSidebar}>
+                    <button className="top-component button" onClick={toggleSidebar}>
                         <FiSidebar />
                     </button>
                 </div>
@@ -105,7 +112,7 @@ export const Sidebar = () => {
                                                     <LuMessageSquare />
                                                     <div>
                                                         {chat.title}
-                                                        <div className='link-effect'></div>
+                                                        <div className="link-effect"></div>
                                                     </div>
                                                 </Link>
                                             </li>
@@ -117,7 +124,7 @@ export const Sidebar = () => {
                     )}
                 </nav>
                 <div className="sidebar_bottom">
-                    <a href='https://portfoliomarcos.com/' target='_blank' className='sidebar-link bottom-component button'>
+                    <a href="https://portfoliomarcos.com/" target="_blank" className="sidebar-link bottom-component button">
                         <div className="left-bottom">
                             <span>My portfolio</span>
                         </div>
@@ -127,10 +134,10 @@ export const Sidebar = () => {
             </div>
 
             {!isSidebarOpen && (
-                <button className='sidebarclose-btn' onClick={toggleSidebar}>
+                <button className="sidebarclose-btn" onClick={toggleSidebar}>
                     <FiSidebar />
                 </button>
             )}
         </>
-    )
-}
+    );
+};
