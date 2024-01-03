@@ -7,7 +7,6 @@ import { Header } from "../../../components/Header";
 import { useSidebar } from '../../../hooks/SidebarContext';
 import { useChatContext } from '../../../hooks/ChatContext';
 import { Loader } from "../../../helpers/Loader"
-import '../../../styles/css/chatgpt.css';
 
 const Chat = () => {
     const { chats } = useChatContext();
@@ -38,7 +37,7 @@ const Chat = () => {
     }, [params.id, chats]);
 
     return (
-        <div className={isSidebarOpen && !isMobile ? "chat-gpt" : "chat-gpt big"}>
+        <div className={`absolute top-0 right-0 ${isSidebarOpen && !isMobile ? "small" : "big"}`}>
             <Header
                 isSidebarOpen={isSidebarOpen}
                 isMobile={isMobile}
@@ -52,7 +51,7 @@ const Chat = () => {
                 />
             )}
 
-            <div className='bx-separator-short bx-dark'></div>
+            <div className='h-[100px] bg-[#343541]'></div>
         </div>
     );
 };

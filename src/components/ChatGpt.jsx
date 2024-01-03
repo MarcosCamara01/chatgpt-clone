@@ -7,7 +7,6 @@ import { SaveButton } from './SaveButton';
 import { Messages } from "./Messages";
 import { PrincipalImput } from "./PrincipalImput";
 import { Header } from './Header';
-import '../styles/css/chatgpt.css';
 import { useSidebar } from '../hooks/SidebarContext';
 
 const ChatGPT = () => {
@@ -66,7 +65,7 @@ const ChatGPT = () => {
     };
 
     return (
-        <div className={isSidebarOpen && !isMobile ? "chat-gpt" : "chat-gpt big"}>
+        <div className={`h-screen absolute right-0 top-0 ${isSidebarOpen && !isMobile ? "small" : "big"}`}>
             {messagesReady ? (
                 <>
                     <Header
@@ -83,7 +82,7 @@ const ChatGPT = () => {
                 />
             )}
 
-            <div className='bx-separator bx-dark' ref={messagesContainerRef}></div>
+            <div className='h-48 bg-[#343541]' ref={messagesContainerRef}></div>
 
             <div className={isSidebarOpen && !isMobile ? "principal-input" : "principal-input big-input"}>
                 {messages.length > 1 &&
