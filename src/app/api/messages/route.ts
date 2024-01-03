@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { Chat, IChat } from '../../../models'
-import { dbConnect } from '../../../utils/mongoose'
+import { NextRequest, NextResponse } from 'next/server';
+import { Chat, IChat } from '../../../models';
+import { connectDB } from '../../../utils/mongoose';
 
-dbConnect()
+connectDB();
 
 export async function GET() {
     try {
