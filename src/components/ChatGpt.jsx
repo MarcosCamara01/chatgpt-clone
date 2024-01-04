@@ -84,7 +84,8 @@ const ChatGPT = () => {
 
             <div className='h-48 bg-[#343541]' ref={messagesContainerRef}></div>
 
-            <div className={isSidebarOpen && !isMobile ? "principal-input" : "principal-input big-input"}>
+            <div className={`fixed right-0 bottom-0 pt-2 pl-2 flex flex-col items-center justify-center principal-input
+            ${isSidebarOpen && !isMobile ? "small" : "big"}`}>
                 {messages.length > 1 &&
                     <SaveButton
                         messages={messages}

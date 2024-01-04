@@ -64,6 +64,14 @@ pre {
   max-width: 714px;
 }
 
+.principal-input {
+  background-image: linear-gradient(180deg, rgba(53, 55, 64, 0), #353740 58.85%);
+}
+
+.custom-shadow {
+  box-shadow: 0 0 transparent, 0 0 transparent, 0 0 15px rgba(0, 0, 0, .1);
+}
+
 @media screen and (max-width: 768px) {
   pre {
     font-size: 12px;

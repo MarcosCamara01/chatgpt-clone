@@ -69,15 +69,15 @@ export const SaveButton = ({ messages }) => {
     };
 
     return (
-        <button className={`save-btn ${showAnimation && "svg-big"}`} onClick={handleSave}>
+        <button className={`w-[100px] h-[38px] bg-[#3E3F4B] border border-solid border-[#565869] text-[#ECECF1] rounded py-2	px-3 flex items-center justify-around text-sm mb-4 transition duration-150 ease hover:bg-[#565869] ${showAnimation && "svg-big"}`} onClick={handleSave}>
             {showAnimation ? (
                 <>
-                    <BiCheck />
+                    <BiCheck className='text-base' />
                     Saved
                 </>
             ) : (
                 <>
-                    <LuSave />
+                    <LuSave className='text-base' />
                     Save
                 </>
             )}
