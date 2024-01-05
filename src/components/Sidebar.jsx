@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import '../styles/css/sidebar.css';
 import { IoMdAdd } from 'react-icons/io';
 import { FiSettings, FiSidebar } from 'react-icons/fi';
 import { LuMessageSquare } from 'react-icons/lu';
@@ -80,17 +79,17 @@ export const Sidebar = () => {
 
     return (
         <>
-            <div className={`nav-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && isSidebarOpen ? 'mobile' : ''}`}>
-                <div className="sidebar_top">
-                    <button onClick={handleNewChatClick} className="sidebar-link top-component button">
-                        <IoMdAdd />
-                        <span>New chat</span>
+            <div className={`h-full bg-[#202123] p-2 z-10 fixed ${isSidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && isSidebarOpen ? 'mobile' : ''}`}>
+                <div className="flex items-center justify-between gap-2.5 mb-1">
+                    <button onClick={handleNewChatClick} className="w-full gap-3 text-sm text-white p-3	flex items-center border border-solid border-[#4D4D4F] rounded-md transition duration-100 ease hover:bg-[#2A2B32]">
+                        <IoMdAdd className='text-base' />
+                        <span className='text-sm h-[18px]'>New chat</span>
                     </button>
-                    <button className="top-component button" onClick={toggleSidebar}>
-                        <FiSidebar />
+                    <button className="p-3 flex items-center border border-solid border-[#4D4D4F] rounded-md transition duration-100 ease hover:bg-[#2A2B32]" onClick={toggleSidebar}>
+                        <FiSidebar className='text-base text-white' />
                     </button>
                 </div>
-                <nav>
+                <nav className='max-w-[252px] overflow-y-auto mr-[-0.5rem] h-[85vh]'>
                     {isLoading ? (
                         <Loader />
                     ) : (
@@ -106,13 +105,17 @@ export const Sidebar = () => {
                                 if (chat.title) {
                                     return (
                                         <React.Fragment key={chat._id}>
-                                            {showHeading && <h3>{heading}</h3>}
+                                            {showHeading && <h3 className='text-xs pt-3 px-3 pb-2 text-[#8e8ea0] font-medium'>{heading}</h3>}
                                             <li>
-                                                <Link href={`/chats/${chat._id}`} onClick={toggleMobile}>
-                                                    <LuMessageSquare />
-                                                    <div>
+                                                <Link
+                                                    className='text-[#ECECF1] p-3 flex gap-3 rounded-md items-center transition duration-100 ease hover:bg-[#2A2B32]'
+                                                    href={`/chats/${chat._id}`}
+                                                    onClick={toggleMobile}
+                                                >
+                                                    <LuMessageSquare className='text-lg	min-w-[18px] min-h-[18px]' />
+                                                    <div className='w-full text-sm max-h-5	break-all overflow-hidden relative'>
                                                         {chat.title}
-                                                        <div className="link-effect"></div>
+                                                        <div className="absolute top-0 bottom-0 right-0 z-10 w-8 link-effect"></div>
                                                     </div>
                                                 </Link>
                                             </li>
@@ -123,19 +126,19 @@ export const Sidebar = () => {
                         </ul>
                     )}
                 </nav>
-                <div className="sidebar_bottom">
-                    <a href="https://portfoliomarcos.com/" target="_blank" className="sidebar-link bottom-component button">
-                        <div className="left-bottom">
+                <div className="py-2 border-t border-solid border-[#4D4D4F]">
+                    <a href="https://portfoliomarcos.com/" target="_blank" className="gap-3	text-sm	text-white p-3 flex items-center justify-between rounded-md transition duration-100 ease hover:bg-[#2A2B32]">
+                        <div>
                             <span>My portfolio</span>
                         </div>
-                        <FiSettings />
+                        <FiSettings className='text-base' />
                     </a>
                 </div>
             </div>
 
             {!isSidebarOpen && (
-                <button className="sidebarclose-btn" onClick={toggleSidebar}>
-                    <FiSidebar />
+                <button className="fixed top-2.5 left-2.5 bg-[#343541] rounded-md p-3.5 flex items-center justify-center z-50 transition duration-100 ease hover:bg-[#2A2B32]" onClick={toggleSidebar}>
+                    <FiSidebar className='text-white text-base' />
                 </button>
             )}
         </>

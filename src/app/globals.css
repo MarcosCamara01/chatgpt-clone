@@ -72,6 +72,31 @@ pre {
   box-shadow: 0 0 transparent, 0 0 transparent, 0 0 15px rgba(0, 0, 0, .1);
 }
 
+.link-effect {
+  background-image: linear-gradient(to left, #202123, rgba(32, 33, 35, 0));
+}
+
+nav ul li a:hover .link-effect {
+  background-image: linear-gradient(to left, rgba(42, 43, 50, 1), rgba(32, 33, 35, 0));
+}
+
+.sidebar-open {
+  transition: transform var(--transition) ease;
+  width: 260px;
+  transform: translateX(0);
+}
+
+.sidebar-open.mobile {
+  width: 100%;
+}
+
+.sidebar-close {
+  transition: transform var(--transition) ease;
+  transform: translateX(-100%);
+  overflow: hidden;
+}
+
+
 @media screen and (max-width: 768px) {
   pre {
     font-size: 12px;
