@@ -89,7 +89,7 @@ export const Sidebar = () => {
                         <FiSidebar className='text-base text-white' />
                     </button>
                 </div>
-                <nav className='max-w-[252px] overflow-y-auto mr-[-0.5rem] h-[85vh]'>
+                <nav className='max-w-[252px] overflow-y-auto mr-[-0.5rem] h-[85vh] pr-[10px]'>
                     {isLoading ? (
                         <Loader />
                     ) : (
