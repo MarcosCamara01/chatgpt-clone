@@ -73,11 +73,11 @@ pre {
 }
 
 .link-effect {
-  background-image: linear-gradient(to left, #202123, rgba(32, 33, 35, 0));
+  background: linear-gradient(to left, #202123, rgba(32, 33, 35, 0));
 }
 
 nav ul li a:hover .link-effect {
-  background-image: linear-gradient(to left, rgba(42, 43, 50, 1), rgba(32, 33, 35, 0));
+  background: linear-gradient(to left, rgba(42, 43, 50, 1), rgba(32, 33, 35, 0));
 }
 
 .sidebar-open {

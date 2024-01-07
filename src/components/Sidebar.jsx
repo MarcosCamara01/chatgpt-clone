@@ -108,12 +108,12 @@ export const Sidebar = () => {
                                             {showHeading && <h3 className='text-xs pt-3 px-3 pb-2 text-[#8e8ea0] font-medium'>{heading}</h3>}
                                             <li>
                                                 <Link
-                                                    className='text-[#ECECF1] p-3 flex gap-3 rounded-md items-center transition duration-100 ease hover:bg-[#2A2B32]'
+                                                    className='text-[#ECECF1] p-3 flex gap-3 rounded-md items-center hover:bg-[#2A2B32]'
                                                     href={`/chats/${chat._id}`}
                                                     onClick={toggleMobile}
                                                 >
                                                     <LuMessageSquare className='text-lg	min-w-[18px] min-h-[18px]' />
-                                                    <div className='w-full text-sm max-h-5	break-all overflow-hidden relative'>
+                                                    <div className='w-full text-sm max-h-5 break-all overflow-hidden relative'>
                                                         {chat.title}
                                                         <div className="absolute top-0 bottom-0 right-0 z-10 w-8 link-effect"></div>
                                                     </div>
@@ -136,11 +136,9 @@ export const Sidebar = () => {
                 </div>
             </div>
 
-            {!isSidebarOpen && (
-                <button className="fixed top-2.5 left-2.5 bg-[#343541] rounded-md p-3.5 flex items-center justify-center z-50 transition duration-100 ease hover:bg-[#2A2B32]" onClick={toggleSidebar}>
-                    <FiSidebar className='text-white text-base' />
-                </button>
-            )}
+            <button className={`fixed top-2.5 left-2.5 bg-[#343541] rounded-md p-3.5 flex items-center justify-center z-50 transition-opacity duration-150 ease hover:bg-[#2A2B32] ${!isSidebarOpen ? "opacity-100" : "opacity-0"}`} onClick={toggleSidebar}>
+                <FiSidebar className='text-white text-base' />
+            </button>
         </>
     );
 };
