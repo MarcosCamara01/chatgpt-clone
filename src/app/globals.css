@@ -44,6 +44,10 @@ a {
   background: rgba(52, 53, 65, 1);
 }
 
+.nav-scroll::-webkit-scrollbar-track {
+  background-color: #202123;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #B8B9C3;
   border-radius: 5px;
