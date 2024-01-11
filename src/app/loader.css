@@ -6,13 +6,12 @@
     height: 1em;
 }
 
+
 .spinner.center {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .spinner .spinner-blade {

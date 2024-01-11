@@ -113,7 +113,7 @@ export const Sidebar = () => {
                                                     onClick={toggleMobile}
                                                 >
                                                     <LuMessageSquare className='text-lg	min-w-[18px] min-h-[18px]' />
-                                                    <div className='w-full text-sm max-h-5 break-all overflow-hidden relative'>
+                                                    <div className='relative w-full overflow-hidden text-sm break-all max-h-5'>
                                                         {chat.title}
                                                         <div className="absolute top-0 bottom-0 right-0 z-10 w-8 link-effect"></div>
                                                     </div>
@@ -137,7 +137,7 @@ export const Sidebar = () => {
             </div>
 
             <button className={`fixed top-2.5 left-2.5 bg-[#343541] rounded-md p-3.5 flex items-center justify-center z-50 transition-opacity duration-150 ease hover:bg-[#2A2B32] ${!isSidebarOpen ? "opacity-100" : "opacity-0"}`} onClick={toggleSidebar}>
-                <FiSidebar className='text-white text-base' />
+                <FiSidebar className='text-base text-white' />
             </button>
         </>
     );
