@@ -25,7 +25,6 @@ export async function POST(req: NextRequest) {
       presence_penalty: 1
     });
 
-
     const stream = OpenAIStream(response);
 
     return new StreamingTextResponse(stream);
