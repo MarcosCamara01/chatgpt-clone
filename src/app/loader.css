@@ -6,8 +6,7 @@
     height: 1em;
 }
 
-
-.spinner.center {
+.spinner-center {
     position: fixed;
     left: 50%;
     top: 50%;

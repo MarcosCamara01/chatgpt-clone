@@ -41,7 +41,9 @@ const SingleChat = ({ isMobile, id }) => {
             />
 
             {isLoading ? (
-                <Loader />
+                <div className="flex items-center justify-center w-full h-screen">
+                    <Loader />
+                </div>
             ) : (
                 <Messages
                     messages={chat.messages}

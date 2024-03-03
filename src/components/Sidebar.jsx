@@ -71,7 +71,9 @@ export const Sidebar = ({ isMobile }) => {
                 </div>
                 <nav className={`${isMobile ? 'w-full' : 'max-w-[252px]'} overflow-y-auto mr-[-0.5rem] h-[85vh] pr-[10px] pb-[10px] nav-scroll`}>
                     {isLoading ? (
-                        <Loader />
+                        <div className="relative spinner-center h-[28px]">
+                            <Loader />
+                        </div>
                     ) : (
                         <ul>
                             {chats.map((chat) => {
