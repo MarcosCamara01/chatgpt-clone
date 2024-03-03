@@ -8,44 +8,35 @@ import { useChatContext } from '../hooks/ChatContext';
 import { useSidebar } from '../hooks/SidebarContext';
 import Link from 'next/link';
 import { Loader } from '../helpers/Loader';
+import { fetchChats } from '../helpers/serverFunc';
+import { getHeading } from '../helpers/clientFunc';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 
-export const Sidebar = ({isMobile}) => {
+export const Sidebar = ({ isMobile }) => {
     const { chats, setChats } = useChatContext();
     const { sidebarOpen, setSidebarOpen } = useSidebar();
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const pathname = usePathname();
-
-    useEffect(() => {
-        fetchChats();
-    }, []);
-
-    async function fetchChats() {
-        try {
-            const response = await fetch('/api/messages');
-            const data = await response.json();
-            data.sort((a, b) => new Date(b.date) - new Date(a.date));
-            setChats(data);
-        } catch (error) {
-            console.error('Failed to fetch chats.', error);
-        }
-        setIsLoading(false);
-    }
-
     let currentHeading = null;
 
-    const handleClick = () => {
-        if (pathname === '/') {
-            window.location.reload();
-        } else {
-            router.push('/');
-        }
-    };
+    useEffect(() => {
+        getChats();
+    }, []);
 
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
+    async function getChats() {
+        const data = await fetchChats();
+        if (data) {
+            data.sort((a, b) => new Date(b.date) - new Date(a.date));
+            setChats(data);
+            setIsLoading(false);
+        }
+    }
+
+    const handleNewChatClick = () => {
+        handleClick();
+        toggleMobile();
     };
 
     const toggleMobile = () => {
@@ -54,26 +45,15 @@ export const Sidebar = ({isMobile}) => {
         }
     };
 
-    const handleNewChatClick = () => {
-        handleClick();
-        toggleMobile();
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen);
     };
 
-    const getHeading = (chatDate) => {
-        const currentDate = new Date();
-        const chatDateObj = new Date(chatDate);
-        const timeDifference = currentDate - chatDateObj;
-
-        if (timeDifference <= 24 * 60 * 60 * 1000) {
-            return 'Today';
-        } else if (timeDifference <= 2 * 24 * 60 * 60 * 1000) {
-            return 'Yesterday';
-        } else if (timeDifference <= 7 * 24 * 60 * 60 * 1000) {
-            return 'Previous 7 Days';
-        } else if (timeDifference <= 30 * 24 * 60 * 60 * 1000) {
-            return 'Previous 30 Days';
+    const handleClick = () => {
+        if (pathname === '/') {
+            window.location.reload();
         } else {
-            return 'Older';
+            router.push('/');
         }
     };
 
