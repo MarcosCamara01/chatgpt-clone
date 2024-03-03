@@ -9,12 +9,12 @@ import { PrincipalImput } from "./PrincipalImput";
 import { Header } from './Header';
 import { useSidebar } from '../hooks/SidebarContext';
 
-const ChatGPT = () => {
+const ChatGPT = ({isMobile}) => {
     const textareaRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
     const { messages, input, setInput, handleInputChange, handleSubmit } = useChat();
-    const { sidebarOpen, isMobile } = useSidebar();
+    const { sidebarOpen } = useSidebar();
 
     useEffect(() => {
         document.title = "ChatGPT Clone | By Marcos Cámara";

@@ -37,7 +37,7 @@ export const Messages = ({ messages }) => {
                                     <AiOutlineUser className="text-2xl min-w-[24px] h-[24px] text-white" />
                                 </div>
                             }
-                            <div className='lg:max-w-full max-w-[85%]'>
+                            <div className='min-[1115px]:max-w-full max-w-[85%]'>
                                 {messageParts.map((part, index) => {
                                     if (part.startsWith('```')) {
                                         const codeBlockParts = part.split('\n');
