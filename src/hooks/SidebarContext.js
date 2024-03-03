@@ -1,24 +1,14 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useClientMediaQuery } from './useClientMediaQuery'; // Asegúrate de importar useClientMediaQuery
+import React, { createContext, useContext, useState } from 'react';
 
 const SidebarContext = createContext();
 
-export const SidebarProvider = ({ children }) => {
-    const [isSidebarOpen, setSidebarOpen] = useState(false);
-    const isMobile = useClientMediaQuery('(max-width: 600px)');
-
-    useEffect(() => {
-        if (isMobile) {
-            setSidebarOpen(false);
-        } else {
-            setSidebarOpen(true);
-        }
-    }, [isMobile, setSidebarOpen]);
+export const SidebarProvider = ({ children, initialSidebarState }) => {
+    const [sidebarOpen, setSidebarOpen] = useState(initialSidebarState);
 
     return (
-        <SidebarContext.Provider value={{ isSidebarOpen, setSidebarOpen, isMobile }}>
+        <SidebarContext.Provider value={{ sidebarOpen, setSidebarOpen }}>
             {children}
         </SidebarContext.Provider>
     );

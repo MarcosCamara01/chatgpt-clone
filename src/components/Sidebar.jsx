@@ -11,9 +11,9 @@ import { Loader } from '../helpers/Loader';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 
-export const Sidebar = () => {
+export const Sidebar = ({isMobile}) => {
     const { chats, setChats } = useChatContext();
-    const { isSidebarOpen, setSidebarOpen, isMobile } = useSidebar();
+    const { sidebarOpen, setSidebarOpen } = useSidebar();
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const pathname = usePathname();
@@ -45,7 +45,7 @@ export const Sidebar = () => {
     };
 
     const toggleSidebar = () => {
-        setSidebarOpen(!isSidebarOpen);
+        setSidebarOpen(!sidebarOpen);
     };
 
     const toggleMobile = () => {
@@ -79,7 +79,7 @@ export const Sidebar = () => {
 
     return (
         <>
-            <div className={`h-full bg-[#202123] p-2 z-10 fixed ${isSidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && isSidebarOpen ? 'mobile' : ''}`}>
+            <div className={`h-full bg-[#202123] p-2 z-10 fixed ${sidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && sidebarOpen ? 'mobile' : ''}`}>
                 <div className="flex items-center justify-between gap-2.5 mb-1">
                     <button onClick={handleNewChatClick} className="w-full gap-3 text-sm text-white p-3	flex items-center border border-solid border-[#4D4D4F] rounded-md transition duration-100 ease hover:bg-[#2A2B32]">
                         <IoMdAdd className='text-base' />
@@ -136,7 +136,7 @@ export const Sidebar = () => {
                 </div>
             </div>
 
-            <button className={`fixed top-2.5 left-2.5 bg-[#343541] rounded-md p-3.5 flex items-center justify-center z-50 transition-opacity duration-150 ease hover:bg-[#2A2B32] ${!isSidebarOpen ? "opacity-100" : "opacity-0"}`} onClick={toggleSidebar}>
+            <button className={`fixed top-2.5 left-2.5 bg-[#343541] rounded-md p-3.5 flex items-center justify-center z-50 transition-opacity duration-150 ease hover:bg-[#2A2B32] ${!sidebarOpen ? "opacity-100" : "opacity-0"}`} onClick={toggleSidebar}>
                 <FiSidebar className='text-base text-white' />
             </button>
         </>

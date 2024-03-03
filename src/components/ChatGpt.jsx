@@ -14,7 +14,7 @@ const ChatGPT = () => {
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
     const { messages, input, setInput, handleInputChange, handleSubmit } = useChat();
-    const { isSidebarOpen, isMobile } = useSidebar();
+    const { sidebarOpen, isMobile } = useSidebar();
 
     useEffect(() => {
         document.title = "ChatGPT Clone | By Marcos Cámara";
@@ -65,11 +65,11 @@ const ChatGPT = () => {
     };
 
     return (
-        <div className={`h-screen absolute right-0 top-0 ${isSidebarOpen && !isMobile ? "small" : "big"}`}>
+        <div className={`h-screen absolute right-0 top-0 ${sidebarOpen && !isMobile ? "small" : "big"}`}>
             {messagesReady ? (
                 <>
                     <Header
-                        isSidebarOpen={isSidebarOpen}
+                        sidebarOpen={sidebarOpen}
                         isMobile={isMobile}
                     />
                     <Messages
@@ -85,7 +85,7 @@ const ChatGPT = () => {
             <div className='h-48 bg-[#343541]' ref={messagesContainerRef}></div>
 
             <div className={`fixed right-0 bottom-0 pt-2 pl-2 flex flex-col items-center justify-center principal-input
-            ${isSidebarOpen && !isMobile ? "small" : "big"}`}>
+            ${sidebarOpen && !isMobile ? "small" : "big"}`}>
                 {messages.length > 1 &&
                     <SaveButton
                         messages={messages}

@@ -10,7 +10,7 @@ import { Loader } from "../../../helpers/Loader"
 
 const Chat = () => {
     const { chats } = useChatContext();
-    const { isSidebarOpen, isMobile } = useSidebar();
+    const { sidebarOpen, isMobile } = useSidebar();
     const [chat, setChat] = useState({
         title: '',
         date: "",
@@ -37,9 +37,9 @@ const Chat = () => {
     }, [params.id, chats]);
 
     return (
-        <div className={`absolute top-0 right-0 ${isSidebarOpen && !isMobile ? "small" : "big"}`}>
+        <div className={`absolute top-0 right-0 ${sidebarOpen && !isMobile ? "small" : "big"}`}>
             <Header
-                isSidebarOpen={isSidebarOpen}
+                sidebarOpen={sidebarOpen}
                 isMobile={isMobile}
             />
 

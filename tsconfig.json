@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/utils/mongoose.js"  ],
+, "src/libs/mongoose.js"  ],
   "exclude": [
     "node_modules"
   ]

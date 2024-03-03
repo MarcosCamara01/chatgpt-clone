@@ -9,28 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "5.0.0",
+    "@types/ua-parser-js": "^0.7.39",
     "@vercel/analytics": "^1.0.1",
     "ai": "^2.1.8",
-    "classnames": "^2.3.2",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "mongoose": "^7.1.0",
     "next": "^14.0.4",
-    "next-api-validation": "^1.0.5",
     "openai-edge": "^1.1.0",
-    "prisma": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-syntax-highlighter": "^15.5.0",
+    "ua-parser-js": "^1.0.37"
   },
   "devDependencies": {
-    "@types/node": "^20.1.0",
     "@types/react": "^18.2.6",
-    "@types/react-dom": "^18.2.4",
     "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.0.4"
   }

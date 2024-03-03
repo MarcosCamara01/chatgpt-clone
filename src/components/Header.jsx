@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
   
-export const Header = ({ isSidebarOpen, isMobile }) => {
+export const Header = ({ sidebarOpen, isMobile }) => {
   const header = useRef(null);
   const mainLocation = useRef(0);
 
@@ -25,7 +25,7 @@ export const Header = ({ isSidebarOpen, isMobile }) => {
     <header
       ref={header}
       className={`bg-[#343541] border-b border-solid border-[#2A2B32] p-2 flex items-center justify-center h-[65px] fixed top-0 right-0
-        ${isSidebarOpen && !isMobile ? "small" : "big"}`}>
+        ${sidebarOpen && !isMobile ? "small" : "big"}`}>
       <span className='text-[#D9D9E3] text-sm'>Default (GPT-3.5)</span>
     </header>
   );
