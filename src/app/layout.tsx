@@ -1,10 +1,12 @@
 import React from 'react';
-import { ChatProvider } from '../hooks/ChatContext';
 import { Sidebar } from '../components/Sidebar';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import { SidebarProvider } from '../hooks/SidebarContext';
 import { isMobileDevice } from '../libs/responsive';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../libs/auth";
+import { Session } from "next-auth";
+import { Providers } from './Providers';
 
 import './globals.css';
 
@@ -15,7 +17,8 @@ export const metadata = {
   description: 'ChatGPT clone made with NextJS 13, uses OpenAI API and mongoDB as database',
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session: Session | null = await getServerSession(authOptions);
   const isMobile = isMobileDevice();
   const initialSidebarState = isMobile ? false : true;
 
@@ -23,12 +26,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <main>
-          <ChatProvider>
-            <SidebarProvider initialSidebarState={initialSidebarState}>
-              <Sidebar isMobile={isMobile} />
-              {children}
-            </SidebarProvider>
-          </ChatProvider>
+          <Providers initialSidebarState={initialSidebarState}>
+            {session ? <Sidebar isMobile={isMobile} /> : ""}
+            {children}
+          </Providers>
         </main>
         <Analytics />
       </body>

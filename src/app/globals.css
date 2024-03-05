@@ -34,6 +34,11 @@ a {
   --tw-gradient-from: #202123 var(--tw-gradient-from-position);
   --tw-gradient-to: rgba(32, 33, 35, 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --foreground-rgb: 255, 255, 255;
+}
+
+body {
+  color: var(--foreground-rgb)
 }
 
 ::-webkit-scrollbar {
