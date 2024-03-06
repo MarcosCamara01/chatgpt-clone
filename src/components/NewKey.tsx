@@ -19,7 +19,7 @@ const NewKey = ({ userId }: { userId: string }) => {
     };
 
     return (
-        <div className='absolute top-0 right-0 z-20 flex items-center justify-center w-full h-screen px-4 backdrop-blur-md'>
+        <div className='absolute top-0 right-0 z-50 flex items-center justify-center w-full h-screen px-4 backdrop-blur-md'>
             <div className='p-6 xs:p-10	w-full max-w-[400px] flex flex-col justify-between 
                 items-center gap-7 bg-[#202123] rounded text-white'>
                 <h1 className="w-full text-2xl font-bold text-center">Add your API Key</h1>
