@@ -20,7 +20,8 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const session: Session | null = await getServerSession(authOptions);
-  const isMobile = isMobileDevice();
+  const isMobile = await isMobileDevice();
+  console.log(isMobile)
   const initialSidebarState = isMobile ? false : true;
 
   return (

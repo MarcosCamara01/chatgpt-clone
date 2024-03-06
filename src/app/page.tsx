@@ -9,7 +9,7 @@ import CheckKey from '../components/CheckKey';
 
 export default async function Home() {
   const session: Session | null = await getServerSession(authOptions);
-  const isMobile = isMobileDevice();
+  const isMobile = await isMobileDevice();
 
   if (session) {
     return (

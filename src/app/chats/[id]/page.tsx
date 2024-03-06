@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation';
 
 const Chat = async ({ params }) => {
   const session: Session | null = await getServerSession(authOptions);
-  const isMobile = isMobileDevice();
+  const isMobile = await isMobileDevice();
 
   if (session) {
     return (
