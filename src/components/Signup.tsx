@@ -3,7 +3,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { BiLogoGoogle } from 'react-icons/bi';
 import { BiSolidShow } from 'react-icons/bi';
@@ -12,14 +11,13 @@ import { BiSolidHide } from 'react-icons/bi';
 const Signup = () => {
     const [error, setError] = useState();
     const [showPassword, setShowPassword] = useState(false);
-    const router = useRouter();
     const { data: session } = useSession();
 
     useEffect(() => {
         if (session?.user) {
-            router.push("/");
+            window.location.reload();
         }
-    }, [session, router]);
+    }, [session]);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
