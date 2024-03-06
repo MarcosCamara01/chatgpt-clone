@@ -19,21 +19,29 @@ const NewKey = ({ userId }: { userId: string }) => {
     };
 
     return (
-        <div className='absolute top-0 right-0 z-20 flex items-center justify-center w-full h-screen backdrop-blur-md'>
-            <div className='p-6 xs:p-10	w-full max-w-[350px] flex flex-col justify-between 
+        <div className='absolute top-0 right-0 z-20 flex items-center justify-center w-full h-screen px-4 backdrop-blur-md'>
+            <div className='p-6 xs:p-10	w-full max-w-[400px] flex flex-col justify-between 
                 items-center gap-7 bg-[#202123] rounded text-white'>
-                <h1 className="w-full text-2xl font-medium text-center">Add your API Key</h1>
-                <p className='text-sm'>
-                    You need to add your OpenAI API key to continue using this application.
-                    You can get your API Key
-                    <Link
-                        href="https://platform.openai.com/api-keys"
-                        className='font-bold'
-                    > here</Link>
-                </p>
+                <h1 className="w-full text-2xl font-bold text-center">Add your API Key</h1>
+
+                <div className='flex flex-col w-full gap-3'>
+                    <p className='text-sm'>
+                        You need to add your OpenAI API key to continue using this application.
+                        You can get your API Key
+                        <Link
+                            href="https://platform.openai.com/api-keys"
+                            className='font-bold'
+                        > here.</Link>
+                    </p>
+                    <p className='text-sm'>
+                        It will be stored securely and no one will be able to access it.
+                    </p>
+                </div>
+
                 <div className='flex flex-col w-full gap-3'>
                     <input
                         type="text"
+                        placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                         className="w-full h-8 border border-solid border-[#4D4D4F] py-1 px-2.5 rounded bg-[#2A2B32]
                      text-[13px] focus:outline-none focus:border-[#4D4D4F]"
                         value={apiKey}

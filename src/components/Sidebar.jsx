@@ -111,7 +111,7 @@ export const Sidebar = ({ isMobile }) => {
                 </nav>
                 <div className="py-2 border-t border-solid border-[#4D4D4F]">
                     <a
-                        href="https://portfoliomarcos.com/"
+                        href="https://github.com/MarcosCamara01/chatgpt-clone"
                         target="_blank"
                         className="gap-3 text-sm text-white p-3 flex items-center justify-between
                      rounded-md transition duration-100 ease hover:bg-[#2A2B32]">

@@ -36,14 +36,14 @@ const Signin = () => {
   };
 
   return (
-    <section className="flex items-center justify-center w-full h-screen">
+    <section className="flex items-center justify-center w-full h-screen px-4">
       <form
         className="p-6 xs:p-10	w-full max-w-[350px] flex flex-col justify-between items-center gap-2.5	
          bg-[#202123] rounded text-white"
         onSubmit={handleSubmit}
       >
         {error && <div className="">{error}</div>}
-        <h1 className="w-full my-4 text-2xl font-medium text-center">Welcome back</h1>
+        <h1 className="w-full my-5 text-2xl font-bold text-center">Welcome back</h1>
 
         <input
           type="email"
