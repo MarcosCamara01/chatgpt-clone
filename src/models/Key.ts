@@ -1,11 +1,11 @@
 import { Schema, model, models } from "mongoose";
 
-export interface UserDocument {
+export interface KeyDocument {
   apiKey: string;
   userId: string;
 }
 
-const UserSchema = new Schema<UserDocument>({
+const KeySchema = new Schema<KeyDocument>({
   userId: {
     type: String,
     unique: true,
@@ -20,5 +20,5 @@ const UserSchema = new Schema<UserDocument>({
   }
 );
 
-const User = models.User || model<UserDocument>('User', UserSchema);
-export default User;
+const Key = models.Key || model<KeyDocument>('Key', KeySchema);
+export default Key;

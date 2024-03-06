@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
-import { FiSettings, FiSidebar } from 'react-icons/fi';
+import { FiSettings, FiSidebar, FiGithub } from 'react-icons/fi';
 import { LuMessageSquare } from 'react-icons/lu';
 import { useChatContext } from '../hooks/ChatContext';
 import { useSidebar } from '../hooks/SidebarContext';
@@ -12,6 +12,7 @@ import { fetchChats } from '../helpers/serverFunc';
 import { getHeading } from '../helpers/clientFunc';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
+import { signOut } from "next-auth/react";
 
 export const Sidebar = ({ isMobile }) => {
     const { chats, setChats } = useChatContext();
@@ -69,7 +70,7 @@ export const Sidebar = ({ isMobile }) => {
                         <FiSidebar className='text-base text-white' />
                     </button>
                 </div>
-                <nav className={`${isMobile ? 'w-full' : 'max-w-[252px]'} overflow-y-auto mr-[-0.5rem] h-[85vh] pr-[10px] pb-[10px] nav-scroll`}>
+                <nav className={`${isMobile ? 'w-full' : 'max-w-[252px]'} overflow-y-auto mr-[-0.5rem] h-[79vh] pr-[10px] pb-[10px] nav-scroll`}>
                     {isLoading ? (
                         <div className="relative spinner-center h-[28px]">
                             <Loader />
@@ -109,12 +110,28 @@ export const Sidebar = ({ isMobile }) => {
                     )}
                 </nav>
                 <div className="py-2 border-t border-solid border-[#4D4D4F]">
-                    <a href="https://portfoliomarcos.com/" target="_blank" className="gap-3	text-sm	text-white p-3 flex items-center justify-between rounded-md transition duration-100 ease hover:bg-[#2A2B32]">
+                    <a
+                        href="https://portfoliomarcos.com/"
+                        target="_blank"
+                        className="gap-3 text-sm text-white p-3 flex items-center justify-between
+                     rounded-md transition duration-100 ease hover:bg-[#2A2B32]">
                         <div>
-                            <span>My portfolio</span>
+                            <span>App repository</span>
+                        </div>
+                        <FiGithub className='text-base' />
+                    </a>
+                    <button
+                        onClick={() => {
+                            signOut();
+                        }}
+                        className="gap-3 text-sm w-full	text-white p-3 flex items-center justify-between
+                     rounded-md transition duration-100 ease hover:bg-[#2A2B32]"
+                    >
+                        <div>
+                            <span>Logout</span>
                         </div>
                         <FiSettings className='text-base' />
-                    </a>
+                    </button>
                 </div>
             </div>
 

@@ -5,6 +5,7 @@ import { Session } from "next-auth";
 import { isMobileDevice } from '../libs/responsive';
 import ChatGPT from '../components/ChatGpt';
 import { redirect } from 'next/navigation';
+import CheckKey from '../components/CheckKey';
 
 export default async function Home() {
   const session: Session | null = await getServerSession(authOptions);
@@ -12,7 +13,10 @@ export default async function Home() {
 
   if (session) {
     return (
-      <ChatGPT isMobile={isMobile} />
+      <>
+        <ChatGPT isMobile={isMobile} />
+        <CheckKey />
+      </>
     )
   } else {
     redirect('/login');

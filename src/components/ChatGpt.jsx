@@ -8,16 +8,28 @@ import { Messages } from "./Messages";
 import { PrincipalImput } from "./PrincipalImput";
 import { Header } from './Header';
 import { useSidebar } from '../hooks/SidebarContext';
+import { getUserKey } from '../helpers/getUserKey';
 
-const ChatGPT = ({isMobile}) => {
+const ChatGPT = ({ isMobile }) => {
     const textareaRef = useRef(null);
     const messagesContainerRef = useRef(null);
     const [messagesReady, setMessagesReady] = useState(false);
-    const { messages, input, setInput, handleInputChange, handleSubmit } = useChat();
+    const [userKey, setUserKey] = useState(null);
     const { sidebarOpen } = useSidebar();
+    const { messages, input, setInput, handleInputChange, handleSubmit } = useChat({
+        body: {
+            userKey
+        }
+    });
+
+    const getKey = async () => {
+        const key = await getUserKey();
+        setUserKey(key);
+    }
 
     useEffect(() => {
         document.title = "ChatGPT Clone | By Marcos Cámara";
+        getKey()
     }, []);
 
     const handleFormSubmit = useCallback(
