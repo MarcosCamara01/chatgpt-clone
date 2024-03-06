@@ -43,7 +43,7 @@ const NewKey = ({ userId }: { userId: string }) => {
                         type="text"
                         placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                         className="w-full h-8 border border-solid border-[#4D4D4F] py-1 px-2.5 rounded bg-[#2A2B32]
-                     text-[13px] focus:outline-none focus:border-[#4D4D4F]"
+                        text-xs focus:outline-none focus:border-[#4D4D4F]"
                         value={apiKey}
                         onChange={(e) => setApiKey(e.target.value)}
                     />

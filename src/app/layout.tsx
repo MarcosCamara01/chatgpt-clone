@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "../libs/auth";
 import { Session } from "next-auth";
 import { Providers } from './Providers';
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import './globals.css';
 
@@ -31,8 +32,9 @@ export default async function RootLayout({ children }) {
             {children}
           </Providers>
         </main>
-        <Analytics />
       </body>
+      <Analytics />
+      <GoogleAnalytics gaId="G-42B7X9K6H1" />
     </html>
   )
 }
