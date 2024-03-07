@@ -6,7 +6,7 @@ import axios from 'axios';
 import NewKey from './NewKey';
 
 const CheckKey = async () => {
-    const session: Session | null = await getServerSession(authOptions);
+    const session: Session = await getServerSession(authOptions);
 
     if (session) {
         const response = await axios.get(

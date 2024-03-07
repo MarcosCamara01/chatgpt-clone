@@ -5,7 +5,7 @@ import { Session } from "next-auth";
 import { redirect } from 'next/navigation';
 import Signup from '../../components/Signup';
 
-const Login = async () => {
+const Register = async () => {
   const session: Session | null = await getServerSession(authOptions);
 
   if (session) {
@@ -17,4 +17,4 @@ const Login = async () => {
   }
 }
 
-export default Login;
+export default Register;

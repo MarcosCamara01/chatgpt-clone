@@ -39,7 +39,7 @@ const UpdateKey = ({ userId }: { userId: string }) => {
 
     return (
         <>
-            <div className='py-1.5 px-3.5 text-[13px] transition duration-150 ease hover:bg-[#2A2B32]'>
+            <div className='py-1.5 px-3.5 text-[13px] transition duration-150 ease hover:bg-[#2A2B32] rounded-b'>
                 <button
                     className='w-full text-left'
                     onClick={() => setOpen(!open)}
