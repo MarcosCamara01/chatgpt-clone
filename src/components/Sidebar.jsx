@@ -98,7 +98,7 @@ export const Sidebar = ({ isMobile, session }) => {
                                                     <LuMessageSquare className='text-lg	min-w-[18px] min-h-[18px]' />
                                                     <div className='relative w-full overflow-hidden text-[13px] break-all max-h-5'>
                                                         {chat.title}
-                                                        <div className="absolute top-0 bottom-0 right-0 z-10 w-8 link-effect"></div>
+                                                        <div className="absolute top-0 bottom-0 right-0 w-8 link-effect"></div>
                                                     </div>
                                                 </Link>
                                             </li>
