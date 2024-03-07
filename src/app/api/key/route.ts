@@ -19,18 +19,16 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get('id');
-
     try {
-        const { apiKey } = await req.json();
+        const { userId, apiKey } = await req.json();
 
+        const filter = { userId }; 
+        const update = { apiKey };
 
-        const dataToUpdate = {
-            apiKey
-        };
+        const updatedKey = await Key.findOneAndUpdate(filter, update, {
+            new: true,
+        });
 
-        const updatedKey = await Key.findByIdAndUpdate(id, dataToUpdate, { new: true });
         return NextResponse.json(updatedKey);
     } catch (error) {
         console.error('Failed to update key.', error);
@@ -41,7 +39,6 @@ export async function PUT(req: NextRequest) {
 export async function POST(req: NextRequest) {
     try {
         const { userId, apiKey } = await req.json();
-
 
         const dataToSave = {
             userId: userId,

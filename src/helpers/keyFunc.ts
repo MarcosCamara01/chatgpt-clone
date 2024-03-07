@@ -1,9 +1,35 @@
-"use server"
+"use server";
 
 import axios from "axios";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../libs/auth";
 import { Session } from "next-auth";
+
+export const saveKey = async (apiKey: string, userId: string) => {
+    try {
+        const signupResponse = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/key`, {
+            userId,
+            apiKey
+        });
+
+        return signupResponse.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const updateKey = async (apiKey: string, userId: string) => {
+    try {
+        const signupResponse = await axios.put(`${process.env.NEXT_PUBLIC_APP_URL}/api/key`, {
+            userId,
+            apiKey
+        });
+
+        return signupResponse.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 export const getUserKey = async () => {
     try {

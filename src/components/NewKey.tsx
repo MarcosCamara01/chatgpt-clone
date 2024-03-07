@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { saveKey } from '../helpers/saveKey';
+import { saveKey } from '../helpers/keyFunc';
 import Link from 'next/link';
 
 const NewKey = ({ userId }: { userId: string }) => {
@@ -19,7 +19,7 @@ const NewKey = ({ userId }: { userId: string }) => {
     };
 
     return (
-        <div className='absolute top-0 right-0 z-50 flex items-center justify-center w-full h-screen px-4 backdrop-blur-md'>
+        <div className='fixed top-0 right-0 z-50 flex items-center justify-center w-full h-screen px-4 backdrop-blur-md'>
             <div className='p-6 xs:p-10	w-full max-w-[400px] flex flex-col justify-between 
                 items-center gap-7 bg-[#202123] rounded text-white'>
                 <h1 className="w-full text-2xl font-bold text-center">Add your API Key</h1>
@@ -31,10 +31,15 @@ const NewKey = ({ userId }: { userId: string }) => {
                         <Link
                             href="https://platform.openai.com/api-keys"
                             className='font-bold'
+                            target='_blank'
                         > here.</Link>
                     </p>
                     <p className='text-sm'>
                         It will be stored securely and no one will be able to access it.
+                    </p>
+                    <p className='text-sm'>
+                        If you are a person who is looking at this project for work purposes to see
+                        what Marcos has created, please contact me and I will give you an API key.
                     </p>
                 </div>
 

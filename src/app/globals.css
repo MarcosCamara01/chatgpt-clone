@@ -91,7 +91,6 @@ nav ul li a:hover .link-effect {
 .sidebar-open {
   transition: transform var(--transition) ease;
   width: 260px;
-  transform: translateX(0);
 }
 
 .sidebar-open.mobile {

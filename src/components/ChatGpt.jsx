@@ -8,7 +8,7 @@ import { Messages } from "./Messages";
 import { PrincipalImput } from "./PrincipalImput";
 import { Header } from './Header';
 import { useSidebar } from '../hooks/SidebarContext';
-import { getUserKey } from '../helpers/getUserKey';
+import { getUserKey } from '../helpers/keyFunc';
 
 const ChatGPT = ({ isMobile }) => {
     const textareaRef = useRef(null);

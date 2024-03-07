@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
-import { FiSettings, FiSidebar, FiGithub } from 'react-icons/fi';
+import { FiSidebar, FiGithub } from 'react-icons/fi';
 import { LuMessageSquare } from 'react-icons/lu';
 import { useChatContext } from '../hooks/ChatContext';
 import { useSidebar } from '../hooks/SidebarContext';
@@ -12,9 +12,9 @@ import { fetchChats } from '../helpers/serverFunc';
 import { getHeading } from '../helpers/clientFunc';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
-import { signOut } from "next-auth/react";
+import { PersonalButton } from './PersonalButton';
 
-export const Sidebar = ({ isMobile }) => {
+export const Sidebar = ({ isMobile, session }) => {
     const { chats, setChats } = useChatContext();
     const { sidebarOpen, setSidebarOpen } = useSidebar();
     const [isLoading, setIsLoading] = useState(true);
@@ -62,9 +62,9 @@ export const Sidebar = ({ isMobile }) => {
         <>
             <div className={`h-full bg-[#202123] p-2 z-10 fixed ${sidebarOpen ? 'sidebar-open' : 'sidebar-close'} ${isMobile && sidebarOpen ? 'mobile' : ''}`}>
                 <div className="flex items-center justify-between gap-2.5 mb-1">
-                    <button onClick={handleNewChatClick} className="w-full gap-3 text-sm text-white p-3	flex items-center border border-solid border-[#4D4D4F] rounded-md transition duration-100 ease hover:bg-[#2A2B32]">
+                    <button onClick={handleNewChatClick} className="w-full gap-3 text-[13px] text-white p-3	flex items-center border border-solid border-[#4D4D4F] rounded-md transition duration-100 ease hover:bg-[#2A2B32]">
                         <IoMdAdd className='text-base' />
-                        <span className='text-sm h-[18px]'>New chat</span>
+                        <span className='text-[13px] h-[18px]'>New chat</span>
                     </button>
                     <button className="p-3 flex items-center border border-solid border-[#4D4D4F] rounded-md transition duration-100 ease hover:bg-[#2A2B32]" onClick={toggleSidebar}>
                         <FiSidebar className='text-base text-white' />
@@ -72,7 +72,7 @@ export const Sidebar = ({ isMobile }) => {
                 </div>
                 <nav className={`${isMobile ? 'w-full' : 'max-w-[252px]'} overflow-y-auto mr-[-0.5rem] h-[79vh] pr-[10px] pb-[10px] nav-scroll`}>
                     {isLoading ? (
-                        <div className="relative spinner-center h-[28px]">
+                        <div className="flex items-center justify-center w-full h-full">
                             <Loader />
                         </div>
                     ) : (
@@ -96,7 +96,7 @@ export const Sidebar = ({ isMobile }) => {
                                                     onClick={toggleMobile}
                                                 >
                                                     <LuMessageSquare className='text-lg	min-w-[18px] min-h-[18px]' />
-                                                    <div className='relative w-full overflow-hidden text-sm break-all max-h-5'>
+                                                    <div className='relative w-full overflow-hidden text-[13px] break-all max-h-5'>
                                                         {chat.title}
                                                         <div className="absolute top-0 bottom-0 right-0 z-10 w-8 link-effect"></div>
                                                     </div>
@@ -113,25 +113,14 @@ export const Sidebar = ({ isMobile }) => {
                     <a
                         href="https://github.com/MarcosCamara01/chatgpt-clone"
                         target="_blank"
-                        className="gap-3 text-sm text-white p-3 flex items-center justify-between
+                        className="gap-3 text-[13px] text-white p-3 flex items-center justify-between
                      rounded-md transition duration-100 ease hover:bg-[#2A2B32]">
                         <div>
                             <span>App repository</span>
                         </div>
-                        <FiGithub className='text-base' />
+                        <FiGithub className='text-lg w-[20px]' />
                     </a>
-                    <button
-                        onClick={() => {
-                            signOut();
-                        }}
-                        className="gap-3 text-sm w-full	text-white p-3 flex items-center justify-between
-                     rounded-md transition duration-100 ease hover:bg-[#2A2B32]"
-                    >
-                        <div>
-                            <span>Logout</span>
-                        </div>
-                        <FiSettings className='text-base' />
-                    </button>
+                    <PersonalButton session={session} />
                 </div>
             </div>
 

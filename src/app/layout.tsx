@@ -28,13 +28,13 @@ export default async function RootLayout({ children }) {
       <body className={inter.className}>
         <main>
           <Providers initialSidebarState={initialSidebarState}>
-            {session ? <Sidebar isMobile={isMobile} /> : ""}
+            {session ? <Sidebar isMobile={isMobile} session={session} /> : ""}
             {children}
           </Providers>
         </main>
       </body>
       <Analytics />
-      <GoogleAnalytics gaId="G-Q8RPB6QZR4" />
+      <GoogleAnalytics gaId="G-42B7X9K6H1" />
     </html>
   )
 }
