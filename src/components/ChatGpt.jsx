@@ -123,7 +123,7 @@ const ChatGPT = ({ isMobile }) => {
         }
     }, [messages]);
 
-    const handleInputButtonClick = () => {
+    const handleInputButtonClick = (content) => {
         setInput(content);
     };
 
