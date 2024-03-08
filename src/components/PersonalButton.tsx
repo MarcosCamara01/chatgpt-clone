@@ -57,7 +57,7 @@ export function PersonalButton({ session }: { session: Session }) {
             {open && (
                 <div
                     ref={ref}
-                    className='fixed bottom-[60px] left-2 border border-solid border-[#4D4D4F]
+                    className='w-[244px] fixed bottom-[60px] left-2 border border-solid border-[#4D4D4F]
                      rounded bg-[#202123] text-white'
                 >
                     <div className='py-1.5 px-3.5'>
