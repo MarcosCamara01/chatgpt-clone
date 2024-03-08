@@ -13,14 +13,14 @@ const customCodeStyle = {
 export const Messages = ({ messages }) => {
     return (
         <div className='mt-[65px] w-full'>
-            {messages.map((message) => {
+            {messages.map((message, index) => {
                 const isChatGPT = message.role !== 'user';
                 const messageContent = message.content;
                 const messageParts = messageContent.split(/(```[\s\S]*?```)/);
 
                 return (
                     <div
-                        key={message.id}
+                        key={index}
                         className={`w-full ${isChatGPT ? "bg-[#444654]" : "bg-[#343541]"}`}
                     >
                         <div className='w-[90%] max-w-3xl py-6 mx-auto flex sm:gap-6 gap-3'>

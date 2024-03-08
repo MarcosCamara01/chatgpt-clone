@@ -32,7 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/libs/mongoose.js",
-    "src/helpers/fetchRequest.js"
+    "src/helpers/fetchRequest.ts"
   ],
   "exclude": [
     "node_modules"

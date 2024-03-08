@@ -19,7 +19,6 @@ const MessageSchema: Schema = new Schema({
   },
   id: {
     type: String,
-    required: true,
   },
   role: {
     type: String,

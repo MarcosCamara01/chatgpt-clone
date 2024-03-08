@@ -1,5 +1,7 @@
 "use client";
 
+import { getUserKey } from "./keyFunc";
+
 export const getHeading = (chatDate: Date) => {
     const currentDate = new Date();
     const chatDateObj = new Date(chatDate);
@@ -17,3 +19,8 @@ export const getHeading = (chatDate: Date) => {
         return 'Older';
     }
 };
+
+export const getKey = async (setUserKey: any) => {
+    const key = await getUserKey();
+    setUserKey(key);
+}
