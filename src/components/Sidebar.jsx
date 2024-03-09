@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
-import { FiSidebar, FiGithub } from 'react-icons/fi';
+import { FiSidebar } from 'react-icons/fi';
+import { VscGithub } from "react-icons/vsc";
 import { LuMessageSquare } from 'react-icons/lu';
 import { useChatContext } from '../hooks/ChatContext';
 import { useSidebar } from '../hooks/SidebarContext';
@@ -122,7 +123,7 @@ export const Sidebar = ({ isMobile, session }) => {
                         <div>
                             <span>App repository</span>
                         </div>
-                        <FiGithub className='text-lg w-[20px]' />
+                        <VscGithub className='text-xl w-[20px]' />
                     </a>
                     <PersonalButton session={session} />
                 </div>
