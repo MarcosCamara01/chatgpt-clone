@@ -103,6 +103,38 @@ nav ul li a:hover .link-effect {
   overflow: hidden;
 }
 
+.nav-height {
+  height: calc(100vh - 169px);
+}
+
+.btn-sidebar {
+  transition: left 150ms ease;
+}
+
+.btn-sidebar:hover .btn-close-top {
+  transform: translateY(0.15rem) rotate(20deg) translateZ(0px);
+}
+
+.btn-sidebar:hover .btn-close-bottom {
+  transform: translateY(-0.15rem) rotate(-20deg) translateZ(0px);
+}
+
+.btn-close-top {
+  transform: translateY(0.15rem) rotate(0deg) translateZ(0px);
+}
+
+.btn-close-bottom {
+  transform: translateY(-0.15rem) rotate(0deg) translateZ(0px);
+}
+
+.btn-open-top {
+  transform: translateY(0.15rem) rotate(-20deg) translateZ(0px);
+}
+
+.btn-open-bottom {
+  transform: translateY(-0.15rem) rotate(20deg) translateZ(0px);
+}
+
 @media screen and (max-width: 768px) {
   pre {
     font-size: 12px;

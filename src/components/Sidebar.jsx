@@ -66,11 +66,15 @@ export const Sidebar = ({ isMobile, session }) => {
                         <IoMdAdd className='text-base' />
                         <span className='text-[13px] h-[18px]'>New chat</span>
                     </button>
-                    <button className="p-3 flex items-center border border-solid border-[#4D4D4F] rounded-md transition duration-100 ease hover:bg-[#2A2B32]" onClick={toggleSidebar}>
-                        <FiSidebar className='text-base text-white' />
-                    </button>
+                    {
+                        isMobile ?
+                            <button className="p-3 flex items-center border border-solid border-[#4D4D4F] rounded-md transition duration-100 ease hover:bg-[#2A2B32]" onClick={toggleSidebar}>
+                                <FiSidebar className='text-base text-white' />
+                            </button>
+                            : ""
+                    }
                 </div>
-                <nav className={`${isMobile ? 'w-full' : 'max-w-[252px]'} overflow-y-auto mr-[-0.5rem] h-[79vh] pr-[10px] pb-[10px] nav-scroll`}>
+                <nav className={`${isMobile ? 'w-full' : 'max-w-[252px]'} overflow-y-auto mr-[-0.5rem] nav-height pr-[10px] pb-[10px] nav-scroll`}>
                     {isLoading ? (
                         <div className="flex items-center justify-center w-full h-full">
                             <Loader />
@@ -123,10 +127,22 @@ export const Sidebar = ({ isMobile, session }) => {
                     <PersonalButton session={session} />
                 </div>
             </div>
-
-            <button className={`fixed top-2.5 left-2.5 bg-[#343541] rounded-md p-3.5 flex items-center justify-center z-50 transition-opacity duration-150 ease hover:bg-[#2A2B32] ${!sidebarOpen ? "opacity-100" : "opacity-0"}`} onClick={toggleSidebar}>
-                <FiSidebar className='text-base text-white' />
-            </button>
+            {
+                isMobile ?
+                    <button className={`fixed top-2.5 left-2.5 bg-[#343541] rounded-md p-3.5 flex items-center justify-center z-50 transition-opacity duration-150 ease hover:bg-[#2A2B32] ${!sidebarOpen ? "opacity-100" : "opacity-0"}`} onClick={toggleSidebar}>
+                        <FiSidebar className='text-base text-white' />
+                    </button>
+                    :
+                    <button
+                        className={`fixed z-[1] top-[43%] w-8 h-[72px] flex items-center btn-sidebar ${sidebarOpen ? "left-[265px]" : "left-[5px]"}`}
+                        onClick={toggleSidebar}
+                    >
+                        <div className='flex flex-col items-center w-8 h-8'>
+                            <div className={`h-4 w-1 rounded-full bg-white transition duration-150 ease ${sidebarOpen ? "btn-close-top" : "btn-open-top"}`}></div>
+                            <div className={`h-4 w-1 rounded-full bg-white transition duration-150 ease ${sidebarOpen ? "btn-close-bottom" : "btn-open-bottom"}`}></div>
+                        </div>
+                    </button>
+            }
         </>
     );
 };
