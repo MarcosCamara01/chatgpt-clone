@@ -63,16 +63,13 @@ const UpdateKey = ({ userId }: { userId: string }) => {
 
                         <div className='flex flex-col w-full gap-3 inner-section'>
                             <p className='text-sm'>
-                                You need to add your OpenAI API key to continue using this application.
+                                It will be stored securely and no one will be able to access it.
                                 You can get your API Key
                                 <Link
                                     href="https://platform.openai.com/api-keys"
                                     className='font-bold'
                                     target='_blank'
                                 > here.</Link>
-                            </p>
-                            <p className='text-sm'>
-                                It will be stored securely and no one will be able to access it.
                             </p>
                         </div>
 

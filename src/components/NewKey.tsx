@@ -19,7 +19,7 @@ const NewKey = ({ userId }: { userId: string }) => {
         }
     };
 
-    if(!open) {
+    if (!open) {
         return;
     }
 
@@ -31,7 +31,7 @@ const NewKey = ({ userId }: { userId: string }) => {
 
                 <div className='flex flex-col w-full gap-3'>
                     <p className='text-sm'>
-                        You need to add your OpenAI API key to continue using this application.
+                        It will be stored securely and no one will be able to access it.
                         You can get your API Key
                         <Link
                             href="https://platform.openai.com/api-keys"
@@ -40,11 +40,7 @@ const NewKey = ({ userId }: { userId: string }) => {
                         > here.</Link>
                     </p>
                     <p className='text-sm'>
-                        It will be stored securely and no one will be able to access it.
-                    </p>
-                    <p className='text-sm'>
-                        If you are a person who is looking at this project for work purposes to see
-                        what Marcos has created, please contact me and I will give you an API key.
+                        You can only use the AI Chat with your API key.
                     </p>
                 </div>
 
