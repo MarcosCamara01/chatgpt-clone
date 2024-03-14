@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useChat } from "ai/react";
 import { FirstScreen } from './FirstScreen';
 import { Messages } from "./Messages";
@@ -9,21 +9,27 @@ import { Header } from './Header';
 import { useSidebar } from '../hooks/SidebarContext';
 import { useChatContext } from '../hooks/ChatContext';
 import { fetchRequest } from '../helpers/fetchRequest';
-import { getKey } from '../helpers/clientFunc';
+import { toast } from 'sonner'
 
-const ChatGPT = ({ isMobile }) => {
-    const textareaRef = useRef(null);
-    const messagesContainerRef = useRef(null);
-    const [messagesReady, setMessagesReady] = useState(false);
-    const [userKey, setUserKey] = useState(null);
+const ChatGPT = ({ isMobile, userKey }) => {
     const [chatId, setChatId] = useState(null);
     const { sidebarOpen } = useSidebar();
     const { chats, setChats } = useChatContext();
     const { messages, input, setInput, handleInputChange, handleSubmit } = useChat({
         body: {
-            userKey
+            userKey: userKey
+        },
+        onResponse: (res) => {
+            if (res.status !== 200) {
+                toast.error(res.statusText);
+            }
         },
         onFinish: async (message) => {
+            window.scrollTo({
+                top: document.documentElement.scrollHeight,
+                behavior: 'smooth'
+            });
+
             const allMessages = [
                 { role: "user", content: input, createdAt: new Date() },
                 { ...message },
@@ -77,86 +83,42 @@ const ChatGPT = ({ isMobile }) => {
         },
     });
 
-    useEffect(() => {
-        document.title = "ChatGPT Clone | By Marcos Cámara";
-
-        getKey(setUserKey);
-    }, []);
-
-    const handleFormSubmit = useCallback(
-        (event) => {
-            event.preventDefault();
-            handleSubmit(event);
-        },
-        [handleSubmit]
-    );
-
-    useEffect(() => {
-        const handleKeyDown = (event) => {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                handleFormSubmit(event);
-            }
-        };
-
-        const textarea = textareaRef.current;
-        textarea.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            textarea.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [handleFormSubmit]);
-
-    useEffect(() => {
-        const textarea = textareaRef.current;
-        textarea.style.height = '24px';
-        textarea.style.height = `${textarea.scrollHeight}px`;
-    }, [input]);
-
-    useEffect(() => {
-        if (messages.length > 0) {
-            setMessagesReady(true);
-        }
-
-        if (messagesContainerRef.current && messagesReady) {
-            messagesContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }
-    }, [messages]);
-
     const handleInputButtonClick = (content) => {
         setInput(content);
     };
 
     return (
-        <div className={`h-screen absolute right-0 top-0 ${sidebarOpen && !isMobile ? "small" : "big"}`}>
-            {messagesReady ? (
-                <>
-                    <Header
-                        sidebarOpen={sidebarOpen}
-                        isMobile={isMobile}
+        <>
+            <div className={`h-screen absolute right-0 top-0 ${sidebarOpen && !isMobile ? "small" : "big"}`}>
+                {messages.length > 0 ? (
+                    <>
+                        <Header
+                            sidebarOpen={sidebarOpen}
+                            isMobile={isMobile}
+                        />
+                        <Messages
+                            messages={messages}
+                        />
+                    </>
+                ) : (
+                    <FirstScreen
+                        onButtonClick={handleInputButtonClick}
                     />
-                    <Messages
-                        messages={messages}
+                )}
+
+                <div className='h-48 bg-[#343541]'></div>
+
+                <div className={`fixed right-0 bottom-0 pt-2 pl-2 flex flex-col items-center justify-center principal-input
+                     ${sidebarOpen && !isMobile ? "small" : "big"}`}>
+                    <PrincipalImput
+                        handleSubmit={handleSubmit}
+                        input={input}
+                        handleInputChange={handleInputChange}
+                        userKey={userKey}
                     />
-                </>
-            ) : (
-                <FirstScreen
-                    onButtonClick={handleInputButtonClick}
-                />
-            )}
-
-            <div className='h-48 bg-[#343541]' ref={messagesContainerRef}></div>
-
-            <div className={`fixed right-0 bottom-0 pt-2 pl-2 flex flex-col items-center justify-center principal-input
-            ${sidebarOpen && !isMobile ? "small" : "big"}`}>
-                <PrincipalImput
-                    handleFormSubmit={handleFormSubmit}
-                    textareaRef={textareaRef}
-                    input={input}
-                    handleInputChange={handleInputChange}
-                />
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

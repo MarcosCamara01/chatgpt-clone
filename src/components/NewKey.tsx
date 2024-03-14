@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 const NewKey = ({ userId }: { userId: string }) => {
     const [apiKey, setApiKey] = useState<string>("");
+    const [open, setOpen] = useState(true);
 
     const handleUpdate = async (e: React.SyntheticEvent<EventTarget>) => {
         try {
@@ -17,6 +18,10 @@ const NewKey = ({ userId }: { userId: string }) => {
             console.error(error);
         }
     };
+
+    if(!open) {
+        return;
+    }
 
     return (
         <div className='fixed top-0 right-0 z-50 flex items-center justify-center w-full h-screen px-4 backdrop-blur-md'>
@@ -56,9 +61,16 @@ const NewKey = ({ userId }: { userId: string }) => {
                     <button
                         onClick={(e) => handleUpdate(e)}
                         className="w-full bg-[#2A2B32] border border-solid border-[#4D4D4F] py-1.5 rounded
-                    transition duration-150 ease hover:bg-[#202123] text-[13px]"
+                        transition duration-150 ease hover:bg-[#202123] text-[13px]"
                     >
                         Submit key
+                    </button>
+                    <button
+                        onClick={(e) => setOpen(false)}
+                        className="w-full bg-[#2A2B32] border border-solid border-[#4D4D4F] py-1.5 rounded
+                        transition duration-150 ease hover:bg-[#202123] text-[13px]"
+                    >
+                        Add later
                     </button>
                 </div>
             </div>

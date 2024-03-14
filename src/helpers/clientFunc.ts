@@ -19,8 +19,3 @@ export const getHeading = (chatDate: Date) => {
         return 'Older';
     }
 };
-
-export const getKey = async (setUserKey: any) => {
-    const key = await getUserKey();
-    setUserKey(key);
-}

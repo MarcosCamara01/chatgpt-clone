@@ -10,6 +10,7 @@ import { Providers } from './Providers';
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 import './globals.css';
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,6 +28,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <main>
+          <Toaster position="top-right" />
           <Providers initialSidebarState={initialSidebarState}>
             {session ? <Sidebar isMobile={isMobile} session={session} /> : ""}
             {children}
