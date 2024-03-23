@@ -17,22 +17,27 @@ export async function generateMetadata() {
 export default async function Home() {
   const isMobile = await isMobileDevice();
   const session: Session = await getServerSession(authOptions);
+  let userKey;
 
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/key?userId=${session.user._id}`
-  );
+  if (session?.user) {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/key?userId=${session.user._id}`
+    );
 
-  const userKey = response.data;
+    userKey = response.data;
+  }
 
   return (
     <>
       <ChatGPT
         isMobile={isMobile}
         userKey={userKey?.apiKey}
+        session={session}
       />
 
       {
-        userKey ? "" : <NewKey userId={session.user._id} />
+        session?.user ? userKey ? "" : <NewKey userId={session.user._id} />
+          : ""
       }
     </>
   )

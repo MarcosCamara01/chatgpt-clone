@@ -7,13 +7,18 @@ export const PrincipalImput = ({
     input,
     handleInputChange,
     userKey,
+    session
 }) => {
     const handleSubmitWithCheck = useCallback((event) => {
         event.preventDefault();
-        if (userKey) {
-            handleSubmit(event);
+        if (session?.user) {
+            if (userKey) {
+                handleSubmit(event);
+            } else {
+                toast.error("You have to add an API key to do this.");
+            }
         } else {
-            toast.error("You have to add an API key to do this");
+            toast.error("You must be registered to do this.");
         }
     }, [handleSubmit, userKey]);
 

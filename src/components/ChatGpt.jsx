@@ -11,7 +11,7 @@ import { useChatContext } from '../hooks/ChatContext';
 import { fetchRequest } from '../helpers/fetchRequest';
 import { toast } from 'sonner'
 
-const ChatGPT = ({ isMobile, userKey }) => {
+const ChatGPT = ({ isMobile, userKey, session }) => {
     const [chatId, setChatId] = useState(null);
     const { sidebarOpen } = useSidebar();
     const { chats, setChats } = useChatContext();
@@ -115,6 +115,7 @@ const ChatGPT = ({ isMobile, userKey }) => {
                         input={input}
                         handleInputChange={handleInputChange}
                         userKey={userKey}
+                        session={session}
                     />
                 </div>
             </div>

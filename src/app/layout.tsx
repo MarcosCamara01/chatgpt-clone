@@ -30,7 +30,7 @@ export default async function RootLayout({ children }) {
         <main>
           <Toaster position="top-right" />
           <Providers initialSidebarState={initialSidebarState}>
-            {session ? <Sidebar isMobile={isMobile} session={session} /> : ""}
+            <Sidebar isMobile={isMobile} session={session} />
             {children}
           </Providers>
         </main>

@@ -3,19 +3,24 @@
 import React, { useState } from 'react';
 import { saveKey } from '../helpers/keyFunc';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 const NewKey = ({ userId }: { userId: string }) => {
     const [apiKey, setApiKey] = useState<string>("");
     const [open, setOpen] = useState(true);
 
     const handleUpdate = async (e: React.SyntheticEvent<EventTarget>) => {
-        try {
-            const response = await saveKey(apiKey, userId);
-            if (response) {
-                window.location.reload();
+        if (userId) {
+            try {
+                const response = await saveKey(apiKey, userId);
+                if (response) {
+                    window.location.reload();
+                }
+            } catch (error) {
+                console.error(error);
             }
-        } catch (error) {
-            console.error(error);
+        } else {
+            toast.warning("You must be registered to add your API Key");
         }
     };
 
