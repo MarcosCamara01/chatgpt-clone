@@ -4,15 +4,17 @@ import { authOptions } from "../../libs/auth";
 import { Session } from "next-auth";
 import { redirect } from 'next/navigation';
 import Signin from '../../components/Signin';
+import { isMobileDevice } from '../../libs/responsive';
 
 const Login = async () => {
   const session: Session | null = await getServerSession(authOptions);
+  const isMobile = await isMobileDevice();
 
   if (session) {
     redirect('/');
   } else {
     return (
-      <Signin />
+      <Signin isMobile={isMobile} />
     )
   }
 }
