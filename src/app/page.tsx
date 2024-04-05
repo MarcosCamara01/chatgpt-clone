@@ -1,11 +1,11 @@
 import React from 'react';
 import { isMobileDevice } from '../libs/responsive';
-import ChatGPT from '../components/ChatGpt';
+import ChatGPT from '../components/chat/ChatGpt';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../libs/auth";
 import { Session } from "next-auth";
 import axios from 'axios';
-import NewKey from '../components/NewKey';
+import NewKey from '../components/auth/NewKey';
 
 export async function generateMetadata() {
   return {

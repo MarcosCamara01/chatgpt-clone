@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { saveKey } from '../helpers/keyFunc';
+import { saveKey } from '../../helpers/keyFunc';
 import Link from 'next/link';
 import { toast } from 'sonner';
 

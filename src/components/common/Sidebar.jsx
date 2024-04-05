@@ -5,15 +5,15 @@ import { IoMdAdd } from 'react-icons/io';
 import { FiSidebar } from 'react-icons/fi';
 import { VscGithub } from "react-icons/vsc";
 import { LuMessageSquare } from 'react-icons/lu';
-import { useChatContext } from '../hooks/ChatContext';
-import { useSidebar } from '../hooks/SidebarContext';
+import { useChatContext } from '../../hooks/ChatContext';
+import { useSidebar } from '../../hooks/SidebarContext';
 import Link from 'next/link';
-import { Loader } from '../helpers/Loader';
-import { fetchChats } from '../helpers/serverFunc';
-import { getHeading } from '../helpers/clientFunc';
+import { Loader } from '../../helpers/Loader';
+import { fetchChats } from '../../helpers/serverFunc';
+import { getHeading } from '../../helpers/clientFunc';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
-import { PersonalButton } from './PersonalButton';
+import { PersonalButton } from '../auth/PersonalButton';
 
 export const Sidebar = ({ isMobile, session }) => {
     const { chats, setChats } = useChatContext();

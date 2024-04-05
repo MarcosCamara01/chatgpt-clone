@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../libs/auth";
 import { Session } from "next-auth";
 import { redirect } from 'next/navigation';
-import Signup from '../../components/Signup';
+import Signup from '../../components/auth/Signup';
 import { isMobileDevice } from '../../libs/responsive';
 
 const Register = async () => {

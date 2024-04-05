@@ -1,6 +1,6 @@
 import React from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
-import { GptIcon } from "../helpers/icons";
+import { GptIcon } from "../../helpers/icons";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 

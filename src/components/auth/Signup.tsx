@@ -7,7 +7,7 @@ import Link from "next/link";
 import { BiLogoGoogle } from 'react-icons/bi';
 import { BiSolidShow } from 'react-icons/bi';
 import { BiSolidHide } from 'react-icons/bi';
-import { useSidebar } from "../hooks/SidebarContext";
+import { useSidebar } from "../../hooks/SidebarContext";
 
 const Signup = ({ isMobile }: { isMobile: boolean }) => {
     const [error, setError] = useState();

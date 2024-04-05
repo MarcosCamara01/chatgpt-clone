@@ -1,14 +1,14 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useChat } from "ai/react";
 import { FirstScreen } from './FirstScreen';
 import { Messages } from "./Messages";
 import { PrincipalImput } from "./PrincipalImput";
-import { Header } from './Header';
-import { useSidebar } from '../hooks/SidebarContext';
-import { useChatContext } from '../hooks/ChatContext';
-import { fetchRequest } from '../helpers/fetchRequest';
+import { Header } from '../common/Header';
+import { useSidebar } from '../../hooks/SidebarContext';
+import { useChatContext } from '../../hooks/ChatContext';
+import { fetchRequest } from '../../helpers/fetchRequest';
 import { toast } from 'sonner'
 
 const ChatGPT = ({ isMobile, userKey, session }) => {

@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { Messages } from "./Messages";
-import { Header } from "./Header";
-import { useSidebar } from '../hooks/SidebarContext';
-import { useChatContext } from '../hooks/ChatContext';
-import { Loader } from "../helpers/Loader";
+import { Header } from "../common/Header";
+import { useSidebar } from '../../hooks/SidebarContext';
+import { useChatContext } from '../../hooks/ChatContext';
+import { Loader } from "../../helpers/Loader";
 
 const SingleChat = ({ isMobile, id }) => {
     const { chats } = useChatContext();

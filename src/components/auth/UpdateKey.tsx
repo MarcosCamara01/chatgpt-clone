@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { updateKey } from '../helpers/keyFunc';
+import { updateKey } from '../../helpers/keyFunc';
 import Link from 'next/link';
 
 const UpdateKey = ({ userId }: { userId: string }) => {

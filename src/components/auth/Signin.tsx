@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 import { BiLogoGoogle } from 'react-icons/bi';
 import { BiSolidShow } from 'react-icons/bi';
 import { BiSolidHide } from 'react-icons/bi';
-import { useSidebar } from "../hooks/SidebarContext";
+import { useSidebar } from "../../hooks/SidebarContext";
 
 const Signin = ({isMobile}: {isMobile: boolean}) => {
   const [error, setError] = useState("");

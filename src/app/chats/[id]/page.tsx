@@ -1,4 +1,4 @@
-import SingleChat from '../../../components/SingleChat';
+import SingleChat from '../../../components/chat/SingleChat';
 import { isMobileDevice } from '../../../libs/responsive';
 
 const Chat = async ({ params }) => {
