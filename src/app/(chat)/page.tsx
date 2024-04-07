@@ -1,8 +1,8 @@
 import React from 'react';
-import { isMobileDevice } from '../libs/responsive';
-import ChatGPT from '../components/chat/ChatGpt';
+import { isMobileDevice } from '@/libs/responsive';
+import ChatGPT from '@/components/chat/ChatGpt';
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../libs/auth";
+import { authOptions } from "@/libs/auth";
 import { Session } from "next-auth";
 import { getUserKey, GetUserKeyResponse } from '@/libs/userKey/action';
 

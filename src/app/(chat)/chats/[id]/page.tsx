@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
-import SingleChat from '../../../components/chat/SingleChat';
-import { isMobileDevice } from '../../../libs/responsive';
+import SingleChat from '@/components/chat/SingleChat';
+import { isMobileDevice } from '@/libs/responsive';
 import { getOneChat } from '@/app/actions';
 
 type Props = {

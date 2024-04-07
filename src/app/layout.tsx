@@ -1,15 +1,9 @@
 import React from 'react';
-import Sidebar from '../components/common/Sidebar';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import { isMobileDevice } from '../libs/responsive';
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../libs/auth";
-import { Session } from "next-auth";
 import { Providers } from './Providers';
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Toaster } from 'sonner';
-import { getChats } from './actions';
 
 import './globals.css';
 
@@ -25,23 +19,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session: Session | null = await getServerSession(authOptions);
-  const isMobile = await isMobileDevice();
-  const initialSidebarState = isMobile ? false : true;
-  const response = await getChats();
-  const stringResponse = JSON.stringify(response.chat);
-
   return (
     <html lang="en">
       <body className={inter.className}>
         <main>
           <Toaster position="top-right" />
-          <Providers initialSidebarState={initialSidebarState}>
-            <Sidebar
-              isMobile={isMobile}
-              session={session}
-              stringResponse={stringResponse}
-            />
+          <Providers>
             {children}
           </Providers>
         </main>

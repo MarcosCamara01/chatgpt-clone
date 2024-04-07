@@ -9,6 +9,15 @@ const nextConfig = {
             },
         ],
     },
+    async redirects() {
+        return [
+          {
+            source: '/chats',
+            destination: '/',
+            permanent: true,
+          },
+        ]
+      },
 }
 
 module.exports = nextConfig

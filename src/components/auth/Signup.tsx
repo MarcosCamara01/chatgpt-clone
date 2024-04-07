@@ -1,25 +1,16 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import axios, { AxiosError } from "axios";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { BiLogoGoogle } from 'react-icons/bi';
 import { BiSolidShow } from 'react-icons/bi';
 import { BiSolidHide } from 'react-icons/bi';
-import { useSidebar } from "../../hooks/SidebarContext";
 
-const Signup = ({ isMobile }: { isMobile: boolean }) => {
+const Signup = () => {
     const [error, setError] = useState();
     const [showPassword, setShowPassword] = useState(false);
-    const { sidebarOpen } = useSidebar();
-    const { data: session } = useSession();
-
-    useEffect(() => {
-        if (session?.user) {
-            window.location.reload();
-        }
-    }, [session]);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -31,10 +22,10 @@ const Signup = ({ isMobile }: { isMobile: boolean }) => {
                 name: formData.get("name"),
             });
 
-            const res = await signIn("credentials", {
+            await signIn("credentials", {
                 email: signupResponse.data.email,
                 password: formData.get("password"),
-                redirect: false,
+                redirect: true,
             });
 
         } catch (error) {
@@ -47,7 +38,7 @@ const Signup = ({ isMobile }: { isMobile: boolean }) => {
     };
 
     return (
-        <section className={`h-screen flex items-center justify-center absolute right-0 top-0 ${sidebarOpen && !isMobile ? "small" : "big"}`}>
+        <section className="h-screen flex items-center justify-center">
             <form
                 onSubmit={handleSubmit}
                 className="p-6 xs:p-10 w-full max-w-[350px] flex flex-col justify-between items-center gap-2.5	
