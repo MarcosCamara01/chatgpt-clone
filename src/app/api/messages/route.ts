@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Chat, IChat } from '../../../models';
+import { Chat } from '../../../models/Chat';
 import { connectDB } from '../../../libs/mongoose';
 
 connectDB();

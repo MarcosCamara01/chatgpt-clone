@@ -2,7 +2,11 @@ import { BsSun } from 'react-icons/bs';
 import { SlEnergy } from 'react-icons/sl';
 import { PiWarningBold } from 'react-icons/pi';
 
-export const FirstScreen = ({ onButtonClick }) => {
+export const FirstScreen = ({ setInput }: { setInput: React.Dispatch<React.SetStateAction<string>> }) => {
+    const handleInputButtonClick = (content: string) => {
+        setInput(content);
+    };
+
     const column = "m-auto mt-8 sm:mt-0 flex flex-col gap-3.5 basis-1/3";
     const columnH2 = "text-lg font-normal flex flex-row sm:flex-col items-center gap-3 m-auto";
     const columnUl = "flex flex-col m-auto w-full text-2xl	gap-3.5";
@@ -10,7 +14,7 @@ export const FirstScreen = ({ onButtonClick }) => {
     const columnLi = "bg-[#3E3F4B] p-3 rounded-md w-full text-[15px] leading-5";
 
     return (
-        <div className='flex flex-col leading-5	w-full'>
+        <div className='flex flex-col w-full leading-5'>
             <div className='mx-auto	w-[90%] max-w-3xl flex flex-col text-[#ECECF1]'>
                 <h1 className='mx-auto mt-[75px] sm:mt-[20vh] sm:mb-16 font-bold text-4xl'>ChatGPT</h1>
                 <div className='flex text-center flex-col sm:flex-row gap-3.5 items-start'>
@@ -22,19 +26,19 @@ export const FirstScreen = ({ onButtonClick }) => {
                         <ul className={columnUl}>
                             <button
                                 className={columnButton}
-                                onClick={() => onButtonClick('Explain quantum computing in simple terms')}
+                                onClick={() => handleInputButtonClick('Explain quantum computing in simple terms')}
                             >
                                 &quot;Explain quantum computing in simple terms&quot;
                             </button>
                             <button
                                 className={columnButton}
-                                onClick={() => onButtonClick("Got any creative ideas for a 10 year old's birthday?")}
+                                onClick={() => handleInputButtonClick("Got any creative ideas for a 10 year old's birthday?")}
                             >
                                 &quot;Got any creative ideas for a 10 year old&rsquo;s birthday?&quot;
                             </button>
                             <button
                                 className={columnButton}
-                                onClick={() => onButtonClick('How do I make an HTTP request in Javascript?')}
+                                onClick={() => handleInputButtonClick('How do I make an HTTP request in Javascript?')}
                             >
                                 &quot;How do I make an HTTP request in Javascript?&quot;
                             </button>

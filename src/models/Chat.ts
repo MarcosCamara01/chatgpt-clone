@@ -1,15 +1,17 @@
-import mongoose, { Document, model, Model, Schema } from 'mongoose';
+import { model, models, Schema } from 'mongoose';
 
 export interface IMessage {
   content: string;
-  id: string
-  role: string
+  id: string;
+  createdAt: Date;
+  role: string;
 }
 
-export interface IChat extends Document {
+export interface IChat {
   title: string;
   date: Date;
   messages: IMessage[];
+  _id: Schema.Types.ObjectId;
 }
 
 const MessageSchema: Schema = new Schema({
@@ -26,7 +28,7 @@ const MessageSchema: Schema = new Schema({
   },
 });
 
-const ChatSchema: Schema = new Schema({
+const ChatSchema: Schema = new Schema<IChat>({
   title: {
     type: String,
     required: true,
@@ -41,4 +43,4 @@ const ChatSchema: Schema = new Schema({
   },
 });
 
-export const Chat = (mongoose.models.Chat || model<IChat>('Chat', ChatSchema)) as Model<IChat>;
+export const Chat = (models && models.Chat || model('Chat', ChatSchema));

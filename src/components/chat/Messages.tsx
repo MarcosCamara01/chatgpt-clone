@@ -3,6 +3,8 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { GptIcon } from "../../helpers/icons";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { IMessage } from '@/models/Chat';
+import { Message } from 'ai';
 
 const customCodeStyle = {
     padding: '16px',
@@ -10,7 +12,7 @@ const customCodeStyle = {
     width: '100%'
 };
 
-export const Messages = ({ messages }) => {
+export const Messages = ({ messages }: {messages: IMessage[] | Message[]}) => {
     return (
         <div className='mt-[65px] w-full'>
             {messages.map((message, index) => {

@@ -4,7 +4,7 @@ export interface UserDocument {
   email: string;
   password: string;
   name: string;
-  image: string;
+  image?: string;
   _id: string;
   createdAt: Date;
   updatedAt: Date;

@@ -4,8 +4,7 @@ import ChatGPT from '../components/chat/ChatGpt';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../libs/auth";
 import { Session } from "next-auth";
-import axios from 'axios';
-import NewKey from '../components/auth/NewKey';
+import { getUserKey, GetUserKeyResponse } from '@/libs/userKey/action';
 
 export async function generateMetadata() {
   return {
@@ -16,29 +15,14 @@ export async function generateMetadata() {
 
 export default async function Home() {
   const isMobile = await isMobileDevice();
-  const session: Session = await getServerSession(authOptions);
-  let userKey;
-
-  if (session?.user) {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/key?userId=${session.user._id}`
-    );
-
-    userKey = response.data;
-  }
+  const session: Session | null = await getServerSession(authOptions);
+  const userKeyResponse: GetUserKeyResponse = await getUserKey(session?.user._id)
 
   return (
-    <>
-      <ChatGPT
-        isMobile={isMobile}
-        userKey={userKey?.apiKey}
-        session={session}
-      />
-
-      {
-        session?.user ? userKey ? "" : <NewKey userId={session.user._id} />
-          : ""
-      }
-    </>
+    <ChatGPT
+      isMobile={isMobile}
+      userKey={userKeyResponse.userKey?.userKey}
+      session={session}
+    />
   )
 }

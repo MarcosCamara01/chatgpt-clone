@@ -25,8 +25,7 @@ export async function POST(req: NextRequest) {
       presence_penalty: 1
     });
 
-    if (response.status != 200) {
-      console.log(response);
+    if (response.status !== 200) {
       if (response.status === 401) {
         return new Response('Error', {
           status: response.status,
@@ -45,7 +44,7 @@ export async function POST(req: NextRequest) {
       } else if (response.status === 503) {
         return new Response('Error', {
           status: response.status,
-          statusText: " The engine is currently overloaded, please try again later."
+          statusText: "The engine is currently overloaded, please try again later."
         });
       }
     }

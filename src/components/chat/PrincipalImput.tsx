@@ -1,6 +1,15 @@
+import { Session } from 'next-auth';
 import React, { useCallback } from 'react';
 import { BiSolidSend } from 'react-icons/bi';
 import { toast } from 'sonner';
+
+interface PrincipalImput {
+    handleSubmit: any;
+    input: string;
+    handleInputChange: (e: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => void;
+    userKey: string | undefined;
+    session: Session | null;
+}
 
 export const PrincipalImput = ({
     handleSubmit,
@@ -8,8 +17,8 @@ export const PrincipalImput = ({
     handleInputChange,
     userKey,
     session
-}) => {
-    const handleSubmitWithCheck = useCallback((event) => {
+}: PrincipalImput) => {
+    const handleSubmitWithCheck = useCallback((event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (session?.user) {
             if (userKey) {

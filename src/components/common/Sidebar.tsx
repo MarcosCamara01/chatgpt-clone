@@ -1,40 +1,31 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import { FiSidebar } from 'react-icons/fi';
 import { VscGithub } from "react-icons/vsc";
 import { LuMessageSquare } from 'react-icons/lu';
-import { useChatContext } from '../../hooks/ChatContext';
 import { useSidebar } from '../../hooks/SidebarContext';
 import Link from 'next/link';
-import { Loader } from '../../helpers/Loader';
-import { fetchChats } from '../../helpers/serverFunc';
 import { getHeading } from '../../helpers/clientFunc';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import { PersonalButton } from '../auth/PersonalButton';
+import { Session } from 'next-auth';
+import { IChat } from '@/models/Chat';
 
-export const Sidebar = ({ isMobile, session }) => {
-    const { chats, setChats } = useChatContext();
+interface SidebarProps {
+    isMobile: boolean;
+    session: Session | null;
+    stringResponse: string;
+}
+
+const Sidebar = ({ isMobile, session, stringResponse }: SidebarProps) => {
     const { sidebarOpen, setSidebarOpen } = useSidebar();
-    const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const pathname = usePathname();
-    let currentHeading = null;
-
-    useEffect(() => {
-        getChats();
-    }, []);
-
-    async function getChats() {
-        const data = await fetchChats();
-        if (data) {
-            data.sort((a, b) => new Date(b.date) - new Date(a.date));
-            setChats(data);
-            setIsLoading(false);
-        }
-    }
+    let currentHeading: string | null = null;
+    const chats: IChat[] = JSON.parse(stringResponse);
 
     const handleNewChatClick = () => {
         handleClick();
@@ -76,43 +67,37 @@ export const Sidebar = ({ isMobile, session }) => {
                     }
                 </div>
                 <nav className={`${isMobile ? 'w-full' : 'max-w-[252px]'} overflow-y-auto mr-[-0.5rem] nav-height pr-[10px] pb-[10px] nav-scroll`}>
-                    {isLoading ? (
-                        <div className="flex items-center justify-center w-full h-full">
-                            <Loader />
-                        </div>
-                    ) : (
-                        <ul>
-                            {chats.map((chat) => {
-                                const heading = getHeading(chat.date);
+                    <ul>
+                        {chats.map((chat: IChat) => {
+                            const heading = getHeading(chat.date);
 
-                                const showHeading = heading !== currentHeading;
-                                if (showHeading) {
-                                    currentHeading = heading;
-                                }
+                            const showHeading = heading !== currentHeading;
+                            if (showHeading) {
+                                currentHeading = heading;
+                            }
 
-                                if (chat.title) {
-                                    return (
-                                        <React.Fragment key={chat._id}>
-                                            {showHeading && <h3 className='text-xs pt-3 px-3 pb-2 text-[#8e8ea0] font-medium'>{heading}</h3>}
-                                            <li>
-                                                <Link
-                                                    className='text-[#ECECF1] p-3 flex gap-3 rounded-md items-center hover:bg-[#2A2B32]'
-                                                    href={`/chats/${chat._id}`}
-                                                    onClick={toggleMobile}
-                                                >
-                                                    <LuMessageSquare className='text-lg	min-w-[18px] min-h-[18px]' />
-                                                    <div className='relative w-full overflow-hidden text-[13px] break-all max-h-5'>
-                                                        {chat.title}
-                                                        <div className="absolute top-0 bottom-0 right-0 w-8 link-effect"></div>
-                                                    </div>
-                                                </Link>
-                                            </li>
-                                        </React.Fragment>
-                                    );
-                                }
-                            })}
-                        </ul>
-                    )}
+                            if (chat.title) {
+                                return (
+                                    <React.Fragment key={chat._id.toString()}>
+                                        {showHeading && <h3 className='text-xs pt-3 px-3 pb-2 text-[#8e8ea0] font-medium'>{heading}</h3>}
+                                        <li>
+                                            <Link
+                                                className='text-[#ECECF1] p-3 flex gap-3 rounded-md items-center hover:bg-[#2A2B32]'
+                                                href={`/chats/${chat._id}`}
+                                                onClick={toggleMobile}
+                                            >
+                                                <LuMessageSquare className='text-lg	min-w-[18px] min-h-[18px]' />
+                                                <div className='relative w-full overflow-hidden text-[13px] break-all max-h-5'>
+                                                    {chat.title}
+                                                    <div className="absolute top-0 bottom-0 right-0 w-8 link-effect"></div>
+                                                </div>
+                                            </Link>
+                                        </li>
+                                    </React.Fragment>
+                                );
+                            }
+                        })}
+                    </ul>
                 </nav>
                 <div className="py-2 border-t border-solid border-[#4D4D4F]">
                     <a
@@ -136,13 +121,13 @@ export const Sidebar = ({ isMobile, session }) => {
                                 <span className="text-[13px] transition-opacity duration-150 ease-in-out delay-100">
                                     Login
                                 </span>
-                                
+
                                 <svg
                                     data-testid="geist-icon"
-                                    height="18"
+                                    height="16"
                                     strokeLinejoin="round"
                                     viewBox="0 0 16 16"
-                                    width="18"
+                                    width="16"
                                     style={{ color: 'currentColor' }}
                                 >
                                     <path
@@ -175,3 +160,5 @@ export const Sidebar = ({ isMobile, session }) => {
         </>
     );
 };
+
+export default Sidebar;

@@ -1,16 +1,16 @@
 import { Schema, model, models } from "mongoose";
 
 export interface KeyDocument {
-  apiKey: string;
-  userId: string;
+  userKey: string;
+  userId: string | Schema.Types.ObjectId;
 }
 
 const KeySchema = new Schema<KeyDocument>({
   userId: {
-    type: String,
+    type: String || Schema.Types.ObjectId,
     unique: true,
   },
-  apiKey: {
+  userKey: {
     type: String,
     required: [true, "API key is required"],
   }

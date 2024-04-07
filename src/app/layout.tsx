@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sidebar } from '../components/common/Sidebar';
+import Sidebar from '../components/common/Sidebar';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { isMobileDevice } from '../libs/responsive';
@@ -8,9 +8,10 @@ import { authOptions } from "../libs/auth";
 import { Session } from "next-auth";
 import { Providers } from './Providers';
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Toaster } from 'sonner';
+import { getChats } from './actions';
 
 import './globals.css';
-import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,10 +20,16 @@ export const metadata = {
   description: 'ChatGPT clone made with NextJS 13, uses OpenAI API and mongoDB as database',
 }
 
-export default async function RootLayout({ children }) {
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const session: Session | null = await getServerSession(authOptions);
   const isMobile = await isMobileDevice();
   const initialSidebarState = isMobile ? false : true;
+  const response = await getChats();
+  const stringResponse = JSON.stringify(response.chat);
 
   return (
     <html lang="en">
@@ -30,7 +37,11 @@ export default async function RootLayout({ children }) {
         <main>
           <Toaster position="top-right" />
           <Providers initialSidebarState={initialSidebarState}>
-            <Sidebar isMobile={isMobile} session={session} />
+            <Sidebar
+              isMobile={isMobile}
+              session={session}
+              stringResponse={stringResponse}
+            />
             {children}
           </Providers>
         </main>

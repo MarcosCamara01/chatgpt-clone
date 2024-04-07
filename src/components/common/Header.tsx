@@ -1,6 +1,6 @@
 "use client";
-  
-export const Header = ({ sidebarOpen, isMobile }) => {
+
+export const Header = ({ sidebarOpen, isMobile }: { sidebarOpen: any, isMobile: boolean }) => {
 
   return (
     <header
