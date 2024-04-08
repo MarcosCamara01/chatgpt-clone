@@ -1,5 +1,3 @@
-"use client";
-
 export const getHeading = (chatDate: Date) => {
     const currentDate = new Date();
     const chatDateObj = new Date(chatDate);

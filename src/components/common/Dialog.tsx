@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, FormEvent } from 'react';
+import React, { useState, useEffect, useRef, FormEvent, useTransition } from 'react';
 import Link from 'next/link';
 import {
     GetUserKeyResponse,
@@ -10,11 +10,13 @@ import {
 } from '@/libs/userKey/action';
 import { Schema } from 'mongoose';
 import { toast } from 'sonner';
+import { Loader } from './Loader';
 
 const Dialog = ({ id }: { id: Schema.Types.ObjectId | string }) => {
     const [open, setOpen] = useState(false);
     const [existKey, setExistKey] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement>(null);
+    let [isPending, startTransition] = useTransition();
 
     useEffect(() => {
         checkKey()
@@ -116,7 +118,9 @@ const Dialog = ({ id }: { id: Schema.Types.ObjectId | string }) => {
                         </div>
 
                         <form
-                            onSubmit={handleSubmit}
+                            onSubmit={(event) => {
+                                startTransition(() => handleSubmit(event));
+                            }}
                             className='flex flex-col w-full gap-3'
                         >
                             <input
@@ -128,9 +132,11 @@ const Dialog = ({ id }: { id: Schema.Types.ObjectId | string }) => {
 
                             <button
                                 className="w-full bg-[#2A2B32] border border-solid border-[#4D4D4F] py-1.5 rounded
-                                transition duration-150 ease hover:bg-[#202123] text-[13px]"
+                                transition duration-150 ease hover:bg-[#202123] text-sm"
                             >
-                                Submit key
+                                {isPending
+                                ? <Loader height={20} width={20} />
+                                : "Submit key"}
                             </button>
                         </form>
                     </div>

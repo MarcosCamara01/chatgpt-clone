@@ -7,7 +7,7 @@ import { VscGithub } from "react-icons/vsc";
 import { LuMessageSquare } from 'react-icons/lu';
 import { useSidebar } from '../../hooks/SidebarContext';
 import Link from 'next/link';
-import { getHeading } from '../../helpers/clientFunc';
+import { getHeading } from '../../helpers/getHeading';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import { PersonalButton } from '../auth/PersonalButton';

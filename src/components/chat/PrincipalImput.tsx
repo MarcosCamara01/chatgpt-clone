@@ -2,13 +2,16 @@ import { Session } from 'next-auth';
 import React, { useCallback } from 'react';
 import { BiSolidSend } from 'react-icons/bi';
 import { toast } from 'sonner';
+import { ChatRequestOptions } from 'ai';
+import { Loader } from '../common/Loader';
 
 interface PrincipalImput {
-    handleSubmit: any;
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>, chatRequestOptions?: ChatRequestOptions | undefined) => void;
     input: string;
     handleInputChange: (e: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => void;
     userKey: string | undefined;
     session: Session | null;
+    isLoading: boolean;
 }
 
 export const PrincipalImput = ({
@@ -16,7 +19,8 @@ export const PrincipalImput = ({
     input,
     handleInputChange,
     userKey,
-    session
+    session,
+    isLoading
 }: PrincipalImput) => {
     const handleSubmitWithCheck = useCallback((event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -38,7 +42,7 @@ export const PrincipalImput = ({
                 onSubmit={handleSubmitWithCheck}
             >
                 <div className='relative flex flex-col items-stretch justify-center w-full h-full'>
-                    <div className='w-full py-4 pl-4 rounded-xl flex flex-col bg-[#3E3F4B] custom-shadow'>
+                    <div className='w-full h-14 px-4 rounded-xl bg-[#3E3F4B] custom-shadow flex items-center justify-center'>
                         <textarea
                             className='max-h-[180px] h-[24px] overflow-y-auto pr-16 resize-none w-full text-white text-[15px] leading-6 placeholder:text-[#8e8ea0] focus:outline-none bg-transparent'
                             placeholder='Send a message'
@@ -46,22 +50,19 @@ export const PrincipalImput = ({
                             id='message'
                             value={input}
                             onChange={handleInputChange}
-                            onKeyDown={(event) => {
-                                if (event.key === 'Enter' && !event.shiftKey) {
-                                    event.preventDefault();
-                                    handleSubmit(event);
-                                }
-                            }}
-                        ></textarea>
+                        />
                         <button
-                            className='flex items-center justify-center text-[#ECECF1] p-2 absolute right-3 bottom-3 rounded-md'
+                            className='flex items-center justify-center text-[#ECECF1] p-2 rounded-md'
                             style={{
                                 backgroundColor: input ? 'rgb(25, 195, 125)' : '',
                                 opacity: input ? 1 : 0.4,
                                 color: input ? '#fff' : '',
                             }}
+                            type={isLoading ? "button" : "submit"}
                         >
-                            <BiSolidSend className='text-base' />
+                            {isLoading
+                                ? <Loader height={20} width={20} />
+                                : <BiSolidSend className='text-xl' />}
                         </button>
                     </div>
                 </div>

@@ -21,7 +21,7 @@ interface Props {
 const ChatGPT = ({ isMobile, userKey, session }: Props) => {
     const [chatId, setChatId] = useState<Schema.Types.ObjectId>();
     const { sidebarOpen } = useSidebar();
-    const { messages, input, setInput, handleInputChange, handleSubmit } = useChat({
+    const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
         body: {
             userKey: userKey
         },
@@ -78,21 +78,19 @@ const ChatGPT = ({ isMobile, userKey, session }: Props) => {
     return (
         <>
             <div className={`h-screen absolute right-0 top-0 ${sidebarOpen && !isMobile ? "small" : "big"}`}>
-                {messages.length > 0 ? (
+                {messages.length > 0 ?
                     <>
                         <Header
                             sidebarOpen={sidebarOpen}
                             isMobile={isMobile}
                         />
+                        
                         <Messages
                             messages={messages}
                         />
                     </>
-                ) : (
-                    <FirstScreen
-                        setInput={setInput}
-                    />
-                )}
+                    : <FirstScreen setInput={setInput} />
+                }
 
                 <div className='h-48 bg-[#343541]'></div>
 
@@ -103,6 +101,7 @@ const ChatGPT = ({ isMobile, userKey, session }: Props) => {
                         handleInputChange={handleInputChange}
                         userKey={userKey}
                         session={session}
+                        isLoading={isLoading}
                     />
                 </div>
             </div>
