@@ -1,5 +1,4 @@
 import React from 'react';
-import { isMobileDevice } from '@/libs/responsive';
 import ChatGPT from '@/components/chat/ChatGpt';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/libs/auth";
@@ -14,13 +13,11 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const isMobile = await isMobileDevice();
   const session: Session | null = await getServerSession(authOptions);
   const userKeyResponse: GetUserKeyResponse = await getUserKey(session?.user._id)
 
   return (
     <ChatGPT
-      isMobile={isMobile}
       userKey={userKeyResponse.userKey?.userKey}
       session={session}
     />

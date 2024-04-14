@@ -13,12 +13,11 @@ import { saveChat, updateChat } from '@/app/actions';
 import { Schema } from 'mongoose';
 
 interface Props {
-    isMobile: boolean;
     userKey: string | undefined;
     session: Session | null;
 }
 
-const ChatGPT = ({ isMobile, userKey, session }: Props) => {
+const ChatGPT = ({ userKey, session }: Props) => {
     const [chatId, setChatId] = useState<Schema.Types.ObjectId>();
     const { sidebarOpen } = useSidebar();
     const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
@@ -77,12 +76,11 @@ const ChatGPT = ({ isMobile, userKey, session }: Props) => {
 
     return (
         <>
-            <div className={`h-screen absolute right-0 top-0 ${sidebarOpen && !isMobile ? "small" : "big"}`}>
+            <div className={`h-screen lg:absolute right-0 top-0 transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>
                 {messages.length > 0 ?
                     <>
                         <Header
                             sidebarOpen={sidebarOpen}
-                            isMobile={isMobile}
                         />
                         
                         <Messages
@@ -94,7 +92,7 @@ const ChatGPT = ({ isMobile, userKey, session }: Props) => {
 
                 <div className='h-48 bg-[#343541]'></div>
 
-                <div className={`fixed right-0 bottom-0 pt-2 pl-2 flex flex-col items-center justify-center principal-input ${sidebarOpen && !isMobile ? "small" : "big"}`}>
+                <div className={`fixed w-full right-0 bottom-0 pt-2 pl-2 flex flex-col items-center justify-center principal-input transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>
                     <PrincipalImput
                         handleSubmit={handleSubmit}
                         input={input}

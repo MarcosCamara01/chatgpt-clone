@@ -10,15 +10,14 @@ interface SingleChat {
     stringChat: string;
 }
 
-const SingleChat = ({ isMobile, stringChat }: SingleChat) => {
+const SingleChat = ({ stringChat }: SingleChat) => {
     const { sidebarOpen } = useSidebar();
     const chat: IChat = JSON.parse(stringChat);
 
     return (
-        <div className={`absolute top-0 right-0 ${sidebarOpen && !isMobile ? "small" : "big"}`}>
+        <div className={`lg:absolute top-0 right-0 transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>
             <Header
                 sidebarOpen={sidebarOpen}
-                isMobile={isMobile}
             />
 
             <Messages
