@@ -31,9 +31,11 @@ const ChatHistory = async () => {
                             <React.Fragment key={chat._id.toString()}>
                                 {
                                     showHeading &&
-                                    <h3 className='text-xs pt-3 px-3 pb-2 text-[#8e8ea0] font-medium'>
-                                        {heading}
-                                    </h3>
+                                    <li>
+                                        <h3 className='text-xs pt-3 px-3 pb-2 text-[#8e8ea0] font-medium'>
+                                            {heading}
+                                        </h3>
+                                    </li>
                                 }
                                 <li>
                                     <Link

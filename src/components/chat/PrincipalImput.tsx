@@ -45,7 +45,7 @@ export const PrincipalImput = ({
                 <div className='relative flex flex-col items-stretch justify-center w-full h-full'>
                     <div className='w-full min-h-[52px] px-4 rounded-xl bg-[#3E3F4B] custom-shadow flex items-end justify-center gap-3'>
                         <Textarea
-                            className='min-h-[24px] p-3.5 max-h-[180px] h-full w-full resize-none pr-16 text-white text-sm font-normal placeholder:text-[#8e8ea0] focus:outline-none bg-transparent'
+                            className='min-h-[24px] p-4 max-h-[180px] h-full w-full resize-none text-white text-sm font-normal placeholder:text-[#8e8ea0] focus:outline-none bg-transparent'
                             placeholder='Send a message'
                             name='message'
                             id='message'
