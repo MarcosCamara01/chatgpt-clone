@@ -94,7 +94,7 @@ const Dialog = ({ id }: { id: Schema.Types.ObjectId | string }) => {
 
             {open && (
                 <div
-                    className='fixed top-0 left-0 flex items-center justify-center w-full h-full backdrop-blur-md'
+                    className='fixed top-0 left-0 flex items-center justify-center w-full h-full z-10 backdrop-blur-md'
                 >
                     <div
                         ref={ref}

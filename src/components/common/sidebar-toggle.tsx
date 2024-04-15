@@ -19,6 +19,7 @@ const SidebarToggle = () => {
                 <div className={`h-4 w-1 rounded-full bg-white transition duration-150 ease ${sidebarOpen ? "btn-close-top" : "btn-open-top"}`}></div>
                 <div className={`h-4 w-1 rounded-full bg-white transition duration-150 ease ${sidebarOpen ? "btn-close-bottom" : "btn-open-bottom"}`}></div>
             </div>
+            <span className="sr-only">Toggle Sidebar</span>
         </button>
     )
 }

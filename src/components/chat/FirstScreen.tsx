@@ -24,24 +24,30 @@ export const FirstScreen = ({ setInput }: { setInput: React.Dispatch<React.SetSt
                             Examples
                         </h2>
                         <ul className={columnUl}>
-                            <button
-                                className={columnButton}
-                                onClick={() => handleInputButtonClick('Explain quantum computing in simple terms')}
-                            >
-                                &quot;Explain quantum computing in simple terms&quot;
-                            </button>
-                            <button
-                                className={columnButton}
-                                onClick={() => handleInputButtonClick("Got any creative ideas for a 10 year old's birthday?")}
-                            >
-                                &quot;Got any creative ideas for a 10 year old&rsquo;s birthday?&quot;
-                            </button>
-                            <button
-                                className={columnButton}
-                                onClick={() => handleInputButtonClick('How do I make an HTTP request in Javascript?')}
-                            >
-                                &quot;How do I make an HTTP request in Javascript?&quot;
-                            </button>
+                            <li>
+                                <button
+                                    className={columnButton}
+                                    onClick={() => handleInputButtonClick('Explain quantum computing in simple terms')}
+                                >
+                                    &quot;Explain quantum computing in simple terms&quot;
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={columnButton}
+                                    onClick={() => handleInputButtonClick("Got any creative ideas for a 10 year old's birthday?")}
+                                >
+                                    &quot;Got any creative ideas for a 10 year old&rsquo;s birthday?&quot;
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={columnButton}
+                                    onClick={() => handleInputButtonClick('How do I make an HTTP request in Javascript?')}
+                                >
+                                    &quot;How do I make an HTTP request in Javascript?&quot;
+                                </button>
+                            </li>
                         </ul>
                     </div>
                     <div className={column}>

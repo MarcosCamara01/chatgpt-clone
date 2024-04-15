@@ -11,6 +11,7 @@ const SidebarMobile = () => {
             <SheetTrigger asChild>
                 <button className='fixed top-2.5 left-2.5 bg-[#343541] rounded-md p-3.5 flex items-center justify-center z-50 transition-opacity duration-150 ease hover:bg-[#2A2B32] lg:hidden'>
                     <FiSidebar className='text-base text-white' />
+                    <span className="sr-only">Toggle Sidebar</span>
                 </button>
             </SheetTrigger>
             <SheetContent

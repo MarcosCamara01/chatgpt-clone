@@ -4,6 +4,7 @@ import { BiSolidSend } from 'react-icons/bi';
 import { toast } from 'sonner';
 import { ChatRequestOptions } from 'ai';
 import { Loader } from '../common/Loader';
+import Textarea from 'react-textarea-autosize'
 
 interface PrincipalImput {
     handleSubmit: (e: React.FormEvent<HTMLFormElement>, chatRequestOptions?: ChatRequestOptions | undefined) => void;
@@ -42,28 +43,38 @@ export const PrincipalImput = ({
                 onSubmit={handleSubmitWithCheck}
             >
                 <div className='relative flex flex-col items-stretch justify-center w-full h-full'>
-                    <div className='w-full h-14 px-4 rounded-xl bg-[#3E3F4B] custom-shadow flex items-center justify-center'>
-                        <textarea
-                            className='max-h-[180px] h-[24px] overflow-y-auto pr-16 resize-none w-full text-white text-[15px] leading-6 placeholder:text-[#8e8ea0] focus:outline-none bg-transparent'
+                    <div className='w-full min-h-[52px] px-4 rounded-xl bg-[#3E3F4B] custom-shadow flex items-end justify-center gap-3'>
+                        <Textarea
+                            className='min-h-[24px] p-3.5 max-h-[180px] h-full w-full resize-none pr-16 text-white text-sm font-normal placeholder:text-[#8e8ea0] focus:outline-none bg-transparent'
                             placeholder='Send a message'
                             name='message'
                             id='message'
+                            autoComplete="off"
+                            rows={1}
+                            tabIndex={0}
+                            autoCorrect="off"
                             value={input}
                             onChange={handleInputChange}
                         />
-                        <button
-                            className='flex items-center justify-center text-[#ECECF1] p-2 rounded-md'
-                            style={{
-                                backgroundColor: input ? 'rgb(25, 195, 125)' : '',
-                                opacity: input ? 1 : 0.4,
-                                color: input ? '#fff' : '',
-                            }}
-                            type={isLoading ? "button" : "submit"}
-                        >
-                            {isLoading
-                                ? <Loader height={20} width={20} />
-                                : <BiSolidSend className='text-xl' />}
-                        </button>
+
+                        <div className='flex items-center h-[52px] justify-center'>
+                            <button
+                                className='text-[#ECECF1] p-2 rounded-md'
+                                style={{
+                                    backgroundColor: input ? 'rgb(25, 195, 125)' : '',
+                                    opacity: input ? 1 : 0.4,
+                                    color: input ? '#fff' : '',
+                                }}
+                                type={isLoading ? "button" : "submit"}
+                            >
+
+                                {isLoading
+                                    ? <Loader height={20} width={20} />
+                                    : <BiSolidSend className='text-xl' />
+                                }
+                                <span className="sr-only">Send Message</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>

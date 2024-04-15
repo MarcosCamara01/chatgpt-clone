@@ -92,7 +92,7 @@ const ChatGPT = ({ userKey, session }: Props) => {
 
                 <div className='h-48 bg-[#343541]'></div>
 
-                <div className={`fixed w-full right-0 bottom-0 pt-2 pl-2 flex flex-col items-center justify-center principal-input transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>
+                <div className={`fixed w-full right-0 bottom-0 flex flex-col items-center justify-center principal-input transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>
                     <PrincipalImput
                         handleSubmit={handleSubmit}
                         input={input}
