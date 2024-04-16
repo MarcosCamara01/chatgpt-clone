@@ -5,12 +5,7 @@ import { Header } from "../common/Header";
 import { useSidebar } from '../../hooks/SidebarContext';
 import { IChat } from "@/models/Chat";
 
-interface SingleChat {
-    isMobile: boolean;
-    stringChat: string;
-}
-
-const SingleChat = ({ stringChat }: SingleChat) => {
+const SingleChat = ({ stringChat }: { stringChat: string }) => {
     const { sidebarOpen } = useSidebar();
     const chat: IChat = JSON.parse(stringChat);
 
@@ -23,7 +18,7 @@ const SingleChat = ({ stringChat }: SingleChat) => {
             <Messages
                 messages={chat.messages}
             />
-            
+
             <div className='h-[100px] bg-[#343541]' />
         </div>
     );

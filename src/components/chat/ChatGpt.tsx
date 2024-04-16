@@ -75,35 +75,33 @@ const ChatGPT = ({ userKey, session }: Props) => {
     });
 
     return (
-        <>
-            <div className={`h-screen lg:absolute right-0 top-0 transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>
-                {messages.length > 0 ?
-                    <>
-                        <Header
-                            sidebarOpen={sidebarOpen}
-                        />
-                        
-                        <Messages
-                            messages={messages}
-                        />
-                    </>
-                    : <FirstScreen setInput={setInput} />
-                }
-
-                <div className='h-48 bg-[#343541]'></div>
-
-                <div className={`fixed w-full right-0 bottom-0 flex flex-col items-center justify-center principal-input transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>
-                    <PrincipalImput
-                        handleSubmit={handleSubmit}
-                        input={input}
-                        handleInputChange={handleInputChange}
-                        userKey={userKey}
-                        session={session}
-                        isLoading={isLoading}
+        <div className={`h-screen lg:absolute right-0 top-0 transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>
+            {messages.length > 0 ?
+                <>
+                    <Header
+                        sidebarOpen={sidebarOpen}
                     />
-                </div>
+
+                    <Messages
+                        messages={messages}
+                    />
+                </>
+                : <FirstScreen setInput={setInput} />
+            }
+
+            <div className='h-48 bg-[#343541]' />
+
+            <div className={`fixed w-full right-0 bottom-0 flex flex-col items-center justify-center principal-input transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>
+                <PrincipalImput
+                    handleSubmit={handleSubmit}
+                    input={input}
+                    handleInputChange={handleInputChange}
+                    userKey={userKey}
+                    session={session}
+                    isLoading={isLoading}
+                />
             </div>
-        </>
+        </div>
     )
 }
 
