@@ -1,7 +1,6 @@
 import React from 'react';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import { Providers } from './Providers';
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Toaster } from 'sonner';
 
@@ -24,9 +23,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <main>
           <Toaster position="top-right" />
-          <Providers>
-            {children}
-          </Providers>
+          {children}
         </main>
       </body>
       <Analytics />

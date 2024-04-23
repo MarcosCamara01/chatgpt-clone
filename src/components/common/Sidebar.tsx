@@ -4,7 +4,7 @@ import { useSidebar } from '@/hooks/SidebarContext';
 import React from 'react'
 import SidebarToggle from './sidebar-toggle';
 
-const Sidebar = ({ children }: { children: React.ReactNode; }) => {
+const Sidebar = ({ children }: { children: React.ReactNode }) => {
     const { sidebarOpen } = useSidebar();
 
     return (

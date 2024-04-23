@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { toast } from 'sonner';
 import { Loader } from './Loader';
 import { saveKey } from '@/app/actions';
+import { FaLock } from "react-icons/fa";
 
 const Dialog = () => {
     const [open, setOpen] = useState(false);
@@ -48,12 +49,14 @@ const Dialog = () => {
     return (
         <>
             <button
-                className='w-full text-left py-1.5 px-3.5 '
+                className="gap-3 w-full	text-white p-3 flex items-center justify-between rounded-md transition duration-100 ease hover:bg-[#2A2B32]"
                 onClick={() => setOpen(!open)}
             >
-                <span className="text-[13px] transition-opacity capitalize duration-150 ease-in-out delay-100">
+                <span className="text-[13px] transition-opacity duration-150 ease-in-out delay-100">
                     Add your API key
                 </span>
+
+                <FaLock className='text-lg w-[20px]' />
             </button>
 
             {open && (
@@ -75,12 +78,13 @@ const Dialog = () => {
                                 and no one but you will be able to access it.
                             </p>
                             <p className='text-sm'>
-                                You can get your API Key
-                                <Link
+                                You can get your API Key <Link
                                     href="https://platform.openai.com/api-keys"
-                                    className='font-bold'
+                                    className='font-semibold transition-all hover:underline'
                                     target='_blank'
-                                > here.</Link>
+                                >
+                                    here.
+                                </Link>
                             </p>
                         </div>
 

@@ -8,16 +8,11 @@ import { PrincipalImput } from "./PrincipalImput";
 import { Header } from '../common/Header';
 import { useSidebar } from '../../hooks/SidebarContext';
 import { toast } from 'sonner'
-import { Session } from 'next-auth';
 import { saveChat, updateChat } from '@/app/actions';
 import { Schema } from 'mongoose';
 import { getUserKey } from '@/app/actions';
 
-interface Props {
-    session: Session | null;
-}
-
-const ChatGPT = ({ session }: Props) => {
+const ChatGPT = () => {
     const [chatId, setChatId] = useState<Schema.Types.ObjectId>();
     const [userKey, setUserKey] = useState<string | undefined>(undefined);
     const { sidebarOpen } = useSidebar();
@@ -105,7 +100,6 @@ const ChatGPT = ({ session }: Props) => {
                     input={input}
                     handleInputChange={handleInputChange}
                     userKey={userKey}
-                    session={session}
                     isLoading={isLoading}
                 />
             </div>

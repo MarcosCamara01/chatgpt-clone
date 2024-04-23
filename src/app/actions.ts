@@ -6,10 +6,11 @@ import { revalidatePath } from "next/cache";
 import { connectDB } from "@/libs/mongoose";
 import { cookies } from 'next/headers'
 
-connectDB();
 
 export const getChats = async () => {
-    try {
+    try { 
+        await connectDB();
+
         const chat: IChat[] = await Chat.find();
         chat.reverse();
         return { chat, status: 200 };
@@ -25,6 +26,8 @@ export const getOneChat = async (id: Schema.Types.ObjectId) => {
     }
 
     try {
+        await connectDB()
+
         const chat: IChat | null = await Chat.findById(id);
         return { chat, status: 200 };
     } catch (error) {
@@ -39,6 +42,8 @@ export const updateChat = async (id: Schema.Types.ObjectId, dataToUpdate: any) =
     }
 
     try {
+        await connectDB()
+
         const updatedChat: IChat | null = await Chat.findByIdAndUpdate(id, dataToUpdate, { new: true });
         revalidatePath("/");
         return { updatedChat, status: 200 };
@@ -54,6 +59,8 @@ export const saveChat = async (dataToSave: any) => {
     }
 
     try {
+        await connectDB()
+        
         const savedChat: IChat = await Chat.create(dataToSave);
         revalidatePath("/");
         return { _id: savedChat._id, status: 200 };
@@ -69,6 +76,8 @@ export const deleteChat = async (id: Schema.Types.ObjectId) => {
     }
 
     try {
+        await connectDB()
+        
         const deletedChat = await Chat.findByIdAndDelete(id);
         revalidatePath("/");
         return { deletedChat, status: 200 };
