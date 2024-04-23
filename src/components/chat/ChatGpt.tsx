@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useChat } from "ai/react";
 import { FirstScreen } from './FirstScreen';
 import { Messages } from "./Messages";
@@ -11,14 +11,15 @@ import { toast } from 'sonner'
 import { Session } from 'next-auth';
 import { saveChat, updateChat } from '@/app/actions';
 import { Schema } from 'mongoose';
+import { getUserKey } from '@/app/actions';
 
 interface Props {
-    userKey: string | undefined;
     session: Session | null;
 }
 
-const ChatGPT = ({ userKey, session }: Props) => {
+const ChatGPT = ({ session }: Props) => {
     const [chatId, setChatId] = useState<Schema.Types.ObjectId>();
+    const [userKey, setUserKey] = useState<string | undefined>(undefined);
     const { sidebarOpen } = useSidebar();
     const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
         body: {
@@ -73,6 +74,13 @@ const ChatGPT = ({ userKey, session }: Props) => {
             }
         },
     });
+
+    useEffect(() => {
+        (async function () {
+            const response = await getUserKey()
+            setUserKey(response?.value)
+        })();
+    }, [])
 
     return (
         <div className={`h-screen lg:absolute right-0 top-0 transition-all ${sidebarOpen ? "lg:w-[calc(100%-260px)]" : "lg:w-full"}`}>

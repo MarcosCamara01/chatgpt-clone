@@ -3,7 +3,6 @@ import ChatGPT from '@/components/chat/ChatGpt';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/libs/auth";
 import { Session } from "next-auth";
-import { getUserKey, GetUserKeyResponse } from '@/libs/userKey/action';
 
 export async function generateMetadata() {
   return {
@@ -14,11 +13,9 @@ export async function generateMetadata() {
 
 export default async function Home() {
   const session: Session | null = await getServerSession(authOptions);
-  const userKeyResponse: GetUserKeyResponse = await getUserKey(session?.user._id)
 
   return (
     <ChatGPT
-      userKey={userKeyResponse.userKey?.userKey}
       session={session}
     />
   )

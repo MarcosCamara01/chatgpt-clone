@@ -2,25 +2,14 @@
 
 import React, { useState, useEffect, useRef, FormEvent, useTransition } from 'react';
 import Link from 'next/link';
-import {
-    GetUserKeyResponse,
-    getUserKeyClient,
-    saveUserKey,
-    updateUserKey
-} from '@/libs/userKey/action';
-import { Schema } from 'mongoose';
 import { toast } from 'sonner';
 import { Loader } from './Loader';
+import { saveKey } from '@/app/actions';
 
-const Dialog = ({ id }: { id: Schema.Types.ObjectId | string }) => {
+const Dialog = () => {
     const [open, setOpen] = useState(false);
-    const [existKey, setExistKey] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement>(null);
     let [isPending, startTransition] = useTransition();
-
-    useEffect(() => {
-        checkKey()
-    }, [])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -44,42 +33,17 @@ const Dialog = ({ id }: { id: Schema.Types.ObjectId | string }) => {
 
         const formData = new FormData(event.currentTarget);
 
-        if (!existKey) {
-            const response = await saveUserKey({
-                userKey: String(formData.get("userKey")),
-                userId: id
-            })
+        const userKey = String(formData.get("userKey"))
 
-            if (response.status !== 200) {
-                console.error(response.message)
-                toast.error(response.message)
-            } else {
-                toast.success("API key saved successfully")
-            }
+        if (!userKey) {
+            console.error('Missing data')
+            toast.error('Missing data')
         } else {
-            const response = await updateUserKey(id, String(formData.get("userKey")))
-            if (response.status !== 200) {
-                console.error(response.message)
-                toast.error(response.message)
-            } else {
-                toast.success("API key updated successfully")
-            }
+            await saveKey(String(formData.get("userKey")))
+            toast.success("API key saved successfully")
+            window.location.reload();
         }
     };
-
-    const checkKey = async () => {
-        const stringResponse = await getUserKeyClient(id);
-        const response: GetUserKeyResponse = JSON.parse(stringResponse);
-
-        if (response.status !== 200) {
-            console.error("Error when checking if there is a saved user API key", response.message)
-            setExistKey(false)
-        } else if (response.status === 200 && response.userKey) {
-            setExistKey(true)
-        } else {
-            setExistKey(false)
-        }
-    }
 
     return (
         <>
@@ -102,12 +66,15 @@ const Dialog = ({ id }: { id: Schema.Types.ObjectId | string }) => {
                         items-center gap-7 bg-[#202123] rounded text-white'
                     >
                         <h1 className="w-full text-2xl font-bold capitalize">
-                            {existKey ? "Update" : "Save"} your API key
+                            Save your API key
                         </h1>
 
-                        <div className='flex flex-col w-full gap-3 inner-section'>
+                        <div className='flex flex-col w-full gap-2 inner-section'>
                             <p className='text-sm'>
-                                It will be stored securely and no one will be able to access it.
+                                Your API key will be securely stored in your browser
+                                and no one but you will be able to access it.
+                            </p>
+                            <p className='text-sm'>
                                 You can get your API Key
                                 <Link
                                     href="https://platform.openai.com/api-keys"
@@ -135,8 +102,8 @@ const Dialog = ({ id }: { id: Schema.Types.ObjectId | string }) => {
                                 transition duration-150 ease hover:bg-[#202123] text-sm"
                             >
                                 {isPending
-                                ? <Loader height={20} width={20} />
-                                : "Submit key"}
+                                    ? <Loader height={20} width={20} />
+                                    : "Submit key"}
                             </button>
                         </form>
                     </div>

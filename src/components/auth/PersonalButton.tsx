@@ -75,7 +75,7 @@ export function PersonalButton({ session }: { session: Session }) {
                         </button>
                     </div>
                     <div className='text-[13px] transition duration-150 ease hover:bg-[#2A2B32] rounded-b'>
-                        <Dialog id={session.user._id} />
+                        <Dialog />
                     </div>
                 </div>
             )}

@@ -1,6 +1,5 @@
 import { Session } from 'next-auth';
 import React, { useCallback } from 'react';
-import { BiSolidSend } from 'react-icons/bi';
 import { toast } from 'sonner';
 import { ChatRequestOptions } from 'ai';
 import { Loader } from '../common/Loader';
@@ -34,7 +33,7 @@ export const PrincipalImput = ({
         } else {
             toast.error("You must be registered to do this.");
         }
-    }, [handleSubmit, userKey]);
+    }, [handleSubmit, userKey, session?.user]);
 
     return (
         <>
@@ -70,7 +69,10 @@ export const PrincipalImput = ({
 
                                 {isLoading
                                     ? <Loader height={20} width={20} />
-                                    : <BiSolidSend className='text-xl' />
+                                    : 
+                                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="m21.426 11.095-17-8A1 1 0 0 0 3.03 4.242l1.212 4.849L12 12l-7.758 2.909-1.212 4.849a.998.998 0 0 0 1.396 1.147l17-8a1 1 0 0 0 0-1.81z"></path>
+                                    </svg>
                                 }
                                 <span className="sr-only">Send Message</span>
                             </button>

@@ -4,6 +4,7 @@ import { Schema } from "mongoose";
 import { Chat, IChat } from "../models/Chat";
 import { revalidatePath } from "next/cache";
 import { connectDB } from "@/libs/mongoose";
+import { cookies } from 'next/headers'
 
 connectDB();
 
@@ -75,4 +76,15 @@ export const deleteChat = async (id: Schema.Types.ObjectId) => {
         console.error(error)
         return { message: "Unexpected error", status: 500, error };
     }
+}
+
+export async function saveKey(data: string) {
+    cookies().set('userKey', data)
+    revalidatePath("/");
+}
+
+export async function getUserKey() {
+    const userCookies = cookies()
+    const userKey = userCookies.get('userKey')
+    return userKey;
 }
