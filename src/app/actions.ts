@@ -37,7 +37,7 @@ export const getOneChat = async (id: Schema.Types.ObjectId) => {
 
 export const updateChat = async (
   id: Schema.Types.ObjectId,
-  dataToUpdate: any,
+  dataToUpdate: any
 ) => {
   if (!id || !dataToUpdate) {
     return { message: "Missing data", status: 400 };
@@ -49,7 +49,7 @@ export const updateChat = async (
     const updatedChat: IChat | null = await Chat.findByIdAndUpdate(
       id,
       dataToUpdate,
-      { new: true },
+      { new: true }
     );
     revalidatePath("/");
     return { updatedChat, status: 200 };

@@ -6,6 +6,7 @@ import React, {
   useRef,
   FormEvent,
   useTransition,
+  useCallback,
 } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -32,22 +33,25 @@ const Dialog = () => {
     };
   }, []);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
+      const formData = new FormData(event.currentTarget);
 
-    const userKey = String(formData.get("userKey"));
+      const userKey = String(formData.get("userKey"));
 
-    if (!userKey) {
-      console.error("Missing data");
-      toast.error("Missing data");
-    } else {
-      await saveKey(String(formData.get("userKey")));
-      toast.success("API key saved successfully");
-      window.location.reload();
-    }
-  };
+      if (!userKey) {
+        console.error("Missing data");
+        toast.error("Missing data");
+      } else {
+        await saveKey(String(formData.get("userKey")));
+        toast.success("API key saved successfully");
+        window.location.reload();
+      }
+    },
+    []
+  );
 
   return (
     <>
