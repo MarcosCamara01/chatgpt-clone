@@ -3,17 +3,17 @@ import SidebarMobile from "@/components/common/sidebar-mobile";
 import SidebarDesktop from "@/components/common/sidebar-desktop";
 
 export default async function Layout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <SidebarProvider>
-            <SidebarDesktop />
+  return (
+    <SidebarProvider>
+      <SidebarDesktop />
 
-            <SidebarMobile />
+      <SidebarMobile />
 
-            {children}
-        </SidebarProvider>
-    )
+      {children}
+    </SidebarProvider>
+  );
 }

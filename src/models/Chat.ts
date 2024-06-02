@@ -1,4 +1,4 @@
-import { model, models, Schema } from 'mongoose';
+import { model, models, Schema } from "mongoose";
 
 export interface IMessage {
   content: string;
@@ -43,4 +43,4 @@ const ChatSchema: Schema = new Schema<IChat>({
   },
 });
 
-export const Chat = (models && models.Chat || model('Chat', ChatSchema));
+export const Chat = (models && models.Chat) || model("Chat", ChatSchema);

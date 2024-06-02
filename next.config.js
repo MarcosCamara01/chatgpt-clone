@@ -3,21 +3,21 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-        pathname: '**',
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "**",
       },
     ],
   },
   async redirects() {
     return [
       {
-        source: '/chats',
-        destination: '/',
+        source: "/chats",
+        destination: "/",
         permanent: true,
       },
-    ]
+    ];
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
